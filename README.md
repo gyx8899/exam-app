@@ -1,4 +1,4 @@
-# Next.js Example
+# Exam App
 
 This directory is a brief example of a [Next.js](https://nextjs.org) app that can be deployed to ZEIT Now with zero configuration.
 
@@ -17,3 +17,5 @@ Once initialized, you can deploy the Next.js example with just a single command:
 ```shell
 $ now
 ```
+- Share
+- On/Off line
