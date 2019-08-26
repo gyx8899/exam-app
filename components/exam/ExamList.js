@@ -1,10 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
-import {Tree} from 'antd';
+import {Spin, Tree, message} from 'antd';
 import examListConfig from '../../static/library/index';
-import useDataApi from '../api/UseDataApi';
-import SpinContainer from '../../components/SpinContainer';
+import useFetchApi from '../api/UseDataApi';
 import {ADD_EXAM} from '../../redux/constants/exam';
 
 const {TreeNode} = Tree;
@@ -16,17 +15,19 @@ const ExamList = () => {
 	const examLibraryUrl = `/static/library/json/`;
 	const [examLists] = useState(examListConfig);
 	const [examIndex, setExamIndex] = useState(0);
-	const [dataState, setUrl] = useDataApi(``);
-	const {isError, isLoading, data} = dataState;
+	const [dataState, setUrl] = useFetchApi(``);
 
 	useEffect(() => {
-		if (!dataState.isLoading && dataState.data) {
-			let papers = examLists[examIndex].convertJSON(dataState.data);
+		const {isLoading, data, error} = dataState;
+		if (!isLoading && data) {
+			let papers = examLists[examIndex].convertJSON(data);
 			let newExam = {
 				...examLists[examIndex],
 				papers
 			};
 			dispatch({type: ADD_EXAM, newExam: newExam})
+		} else if (error) {
+			message.error(`${error.message}`);
 		}
 	}, [dataState]);
 
@@ -63,7 +64,7 @@ const ExamList = () => {
 	}, [examLists, library, setExamIndex, setUrl]);
 
 	return (
-			<SpinContainer loading={isLoading}>
+			<Spin spinning={dataState.isLoading}>
 				<Tree defaultExpandedKeys={['0-0']} loadData={onLoadExamData} onSelect={onSelect}>
 					{examLists.map((examConfig, i) => (
 							<TreeNode title={examConfig.title} key={i}>
@@ -73,7 +74,7 @@ const ExamList = () => {
 							</TreeNode>
 					))}
 				</Tree>
-			</SpinContainer>
+			</Spin>
 	);
 };
 

@@ -15,26 +15,25 @@ const dataFetchReducer = (state, action) => {
 			return {
 				...state,
 				isLoading: true,
-				isError: false
+				data: null,
+				error: null
 			};
 		case FETCH_SUCCESS:
 			return {
 				...state,
 				isLoading: false,
-				isError: false,
 				data: action.payload
 			};
 		case FETCH_FAILURE:
 			return {
 				...state,
 				isLoading: false,
-				isError: true
+				error: action.error
 			};
 		case FETCH_CANCELED:
 			return {
 				...state,
-				isLoading: false,
-				isError: false
+				isLoading: false
 			};
 		default:
 			throw new Error();
@@ -49,7 +48,7 @@ const useDataApi = (initialUrl, initialData) => {
 		data: initialData
 	});
 
-	useEffect( () => {
+	useEffect( async () => {
 		let didCancel = false;
 
 		const fetchData = async () => {
@@ -64,11 +63,11 @@ const useDataApi = (initialUrl, initialData) => {
 					!didCancel && dispatch({type: FETCH_SUCCESS, payload: result.data});
 				}
 			} catch (error) {
-				!didCancel && dispatch({type: FETCH_FAILURE});
+				!didCancel && dispatch({type: FETCH_FAILURE, error});
 			}
 		};
 
-		fetchData();
+		await fetchData();
 
 		return () => {
 			didCancel = true;
