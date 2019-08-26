@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
 import examListConfig from '../../static/library/index';
-import useFetchApi from '../api/UseDataApi';
+import UseDataApi from '../api/UseDataApi';
 import {ADD_EXAM} from '../../redux/constants/exam';
 
 const {TreeNode} = Tree;
@@ -15,7 +15,7 @@ const ExamList = () => {
 	const examLibraryUrl = `/static/library/json/`;
 	const [examLists] = useState(examListConfig);
 	const [examIndex, setExamIndex] = useState(0);
-	const [dataState, setUrl] = useFetchApi(``);
+	const [dataState, setUrl] = UseDataApi(``);
 
 	useEffect(() => {
 		const {isLoading, data, error} = dataState;
