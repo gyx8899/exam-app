@@ -15,7 +15,6 @@ function Exam() {
 	const visibilityFilter = useSelector(state => state.exam.config.visibilityFilter);
 	const dispatch = useDispatch();
 
-	// const year = router.query.year;
 	const examId = router.query.examId;
 	const papers = library[examId].papers;
 	const queryIndex = router.query.index * 1;

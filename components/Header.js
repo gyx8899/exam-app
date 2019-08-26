@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, PageHeader, Drawer, Menu, Icon, Empty} from "antd";
+import {Button, PageHeader, Drawer, Menu, Icon, Empty, Avatar} from "antd";
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menus} from "../static/config";
@@ -23,14 +23,12 @@ const Header = () => {
 	const hideDrawer = () => setVisible(false);
 	const {pathname} = useRouter();
 	const selectedMenu = getMenuByPathName(pathname);
-	console.log(`pathname: ${pathname}`);
-	console.log(selectedMenu);
 	return (
 			<header>
 				<PageHeader title={selectedMenu.subDetail ? selectedMenu.subDetail.title : selectedMenu.detail.title}
 										extra={<Button icon="menu-fold" onClick={showDrawer}/>}/>
 				<Drawer
-						title="Exam"
+						title={<Avatar src="/static/icons/favicon-32x32.png" />}
 						placement="left"
 						closable={false}
 						onClose={hideDrawer}
