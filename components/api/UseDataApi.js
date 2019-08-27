@@ -48,7 +48,7 @@ const useDataApi = (initialUrl, initialData) => {
 		data: initialData
 	});
 
-	useEffect( async () => {
+	useEffect(() => {
 		let didCancel = false;
 
 		const fetchData = async () => {
@@ -67,7 +67,7 @@ const useDataApi = (initialUrl, initialData) => {
 			}
 		};
 
-		await fetchData();
+		fetchData();
 
 		return () => {
 			didCancel = true;

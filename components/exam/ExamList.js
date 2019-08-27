@@ -38,8 +38,8 @@ const ExamList = () => {
 			Router.push({
 				pathname: `/exam/${examLists[indexes[0]].id}`,
 				query: {
-					// exam: examLists[indexes[0]].id,
-					index: indexes[1]},
+					index: indexes[1]
+				},
 			})
 		}
 

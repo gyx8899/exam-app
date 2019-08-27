@@ -7,19 +7,24 @@ export const Menus = [
 	{
 		title: 'Exam',
 		iconType: 'ordered-list',
+		pathName: '/exam'
+	},
+	{
+		title: 'Others',
+		iconType: 'ordered-list',
 		pathName: '/exam',
 		subMenus: [
 			{
-				title: 'Exam-2019',
-				pathName: '/exam/2019',
+				title: 'Error',
+				pathName: '/error',
 			},
 			{
-				title: 'Exam-2018',
-				pathName: '/exam/2018',
+				title: 'Home',
+				pathName: '/',
 			},
 			{
-				title: 'Exam-2017',
-				pathName: '/exam/2017',
+				title: 'About',
+				pathName: '/about',
 			},
 		]
 	},
