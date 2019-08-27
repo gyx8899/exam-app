@@ -49,7 +49,7 @@ export function convertJSON(json) {
 			let item = sourceData.data[j];
 			if (item.length) {
 				targetData.data.push({
-					index: item[0] - 1,
+					index: item[0],
 					difficulty: item[1],
 					type: item[2] === '多选题',
 					title: item[3],

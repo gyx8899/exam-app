@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
-import examListConfig from '../../static/library/index';
+import {examConfig as examListConfig, getConfigById} from '../../static/library/index';
 import UseDataApi from '../api/UseDataApi';
 import {ADD_EXAM} from '../../redux/constants/exam';
 
@@ -14,18 +14,24 @@ const ExamList = () => {
 
 	const examLibraryUrl = `/static/library/json/`;
 	const [examLists] = useState(examListConfig);
-	const [examIndex, setExamIndex] = useState(0);
+	const [examId, setExamId] = useState(0);
 	const [dataState, setUrl] = UseDataApi(``);
 
 	useEffect(() => {
 		const {isLoading, data, error} = dataState;
 		if (!isLoading && data) {
-			let papers = examLists[examIndex].convertJSON(data);
-			let newExam = {
-				...examLists[examIndex],
-				papers
-			};
-			dispatch({type: ADD_EXAM, newExam: newExam})
+			let config = getConfigById(examListConfig, examId);
+			if (config && config.convertJSON) {
+				let papers = config.convertJSON(data);
+				let newExam = {
+					...config,
+					papers
+				};
+				dispatch({type: ADD_EXAM, newExam: newExam})
+			}
+			else {
+				message.error(`${examId} is not found!`);
+			}
 		} else if (error) {
 			message.error(`${error.message}`);
 		}
@@ -33,12 +39,14 @@ const ExamList = () => {
 
 	// function(selectedKeys, e:{selected: bool, selectedNodes, node, event})
 	const onSelect = useCallback((selectedKeys) => {
-		let indexes = selectedKeys.pop().split('-');
+		let indexes = selectedKeys.pop().split('.');
 		if (indexes.length > 1) {
+			let index = indexes.pop(),
+					id = indexes.pop();
 			Router.push({
-				pathname: `/exam/${examLists[indexes[0]].id}`,
+				pathname: `/exam/${id}`,
 				query: {
-					index: indexes[1]
+					index
 				},
 			})
 		}
@@ -48,10 +56,10 @@ const ExamList = () => {
 	// function(node)
 	const onLoadExamData = useCallback((treeNode) => {
 		return new Promise((resolve) => {
-			let index = treeNode.props.pos.split('-').pop(),
-					id = examLists[index].id;
-			if (library[id] === undefined) {
-				setExamIndex(index);
+			let id = treeNode.props.id;
+			let config = getConfigById(examListConfig, id);
+			if (config && config.convertJSON && library[id] === undefined) {
+				setExamId(id);
 				setUrl(`${examLibraryUrl}${id}.json`);
 
 				let resolveInterval = setInterval(() => {
@@ -64,15 +72,24 @@ const ExamList = () => {
 				resolve();
 			}
 		});
-	}, [examLists, library, setExamIndex, setUrl, dataState]);
+	}, [examLists, library, setExamId, setUrl, dataState]);
 
 	return (
 			<Spin spinning={dataState.isLoading}>
 				<Tree defaultExpandedKeys={['0-0']} loadData={onLoadExamData} onSelect={onSelect}>
-					{examLists.map((examConfig, i) => (
-							<TreeNode title={examConfig.title} key={i}>
-								{library[examConfig.id] && library[examConfig.id].papers.map((paper, j) =>
-										<TreeNode title={paper.name} key={`${i}-${j}`} isLeaf/>)
+					{examLists.map((itemConfig, i) => (
+							<TreeNode title={itemConfig.title} key={i} id={itemConfig.id}>
+								{library[itemConfig.id] && library[itemConfig.id].papers.map((paper, j) =>
+										<TreeNode title={paper.name} key={`${itemConfig.id}.${j}`} isLeaf/>)
+								}
+								{
+									itemConfig.list && itemConfig.list.length && itemConfig.list.map((listItem, j) => (
+											<TreeNode title={listItem.title} key={`${i}-${j}`} id={listItem.id}>
+												{library[listItem.id] && library[listItem.id].papers.map((paper, k) =>
+														<TreeNode title={paper.name} key={`${listItem.id}.${k}`} isLeaf/>)
+												}
+											</TreeNode>
+									))
 								}
 							</TreeNode>
 					))}

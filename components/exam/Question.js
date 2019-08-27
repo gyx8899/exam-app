@@ -8,7 +8,7 @@ const Question = ({info, examId, paperIndex}) => {
 	const showAnswer = useSelector(state => state.exam.config.showAnswer);
 	return (
 			<Fragment>
-				<div>{`${info.index + 1}. ${info.title}`}</div>
+				<div>{`${info.index}. ${info.title}`}</div>
 				{info.type ? <CheckBox question={info} examId={examId} paperIndex={paperIndex}/> : <Radio question={info} examId={examId} paperIndex={paperIndex} />}
 				{showAnswer && <div>{`答案：${info._answer.map(index => OptionsType[index]).join(', ')}`}</div>}
 			</Fragment>

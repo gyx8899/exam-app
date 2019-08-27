@@ -40,7 +40,7 @@ const Header = () => {
 	return (
 			<header>
 				<PageHeader title={title}
-										extra={<Button icon="menu-fold" onClick={showDrawer}/>}
+										extra={<Button icon="menu" size="small" type="link" onClick={showDrawer}/>}
 										{...customProps}
 				/>
 				<Drawer

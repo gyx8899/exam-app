@@ -33,5 +33,6 @@
     "redux-logger": "^3.0.6",
     "terser-webpack-plugin": "^1.4.1",
     "webpack-bundle-analyzer": "^3.4.1"
-  }
+  },
+  "license": "UNLICENSED"
 }

@@ -18,6 +18,7 @@ function Paper({paperIndex, examId}) {
 			itemLayout="vertical"
 			pagination={{
 				position: 'bottom',
+				showQuickJumper: true,
 				pageSize,
 			}}
 			dataSource={getFilterData(config.visibilityFilter, paper.data)}
