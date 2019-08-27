@@ -1,9 +1,9 @@
 import React, {useState, useCallback} from 'react';
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from "react-redux";
-import {Tabs, Switch, Radio, Empty, PageHeader, Icon} from "antd";
+import {Tabs, Switch, Empty, Icon, Menu, Dropdown, Button, message} from "antd";
 import Paper from '../../components/exam/Paper';
-import {TOGGLE_ANSWER, SET_VISIBILITY_FILTER, visibilityFilters} from "../../redux/constants/exam";
+import {TOGGLE_ANSWER, SET_VISIBILITY_FILTER, visibilityFilters, visibilityFiltersText} from "../../redux/constants/exam";
 import {isRightType} from "../../constants/ConstTypes";
 
 const {TabPane} = Tabs;
@@ -25,21 +25,44 @@ function Exam() {
 	const switchOnChange = useCallback(() => {
 		dispatch({type: TOGGLE_ANSWER});
 	}, []);
-	const radioGroupOnChange = useCallback((e) => {
-		dispatch({type: SET_VISIBILITY_FILTER, filter: visibilityFilters[e.target.value]});
-	}, []);
 
 	const defaultQueryIndex = (queryIndex >= 0 && queryIndex < library[examId].papers.length) ? queryIndex : 0;
 	const [paperData, setPaperData] = useState(papers[queryIndex].data);
-	let operations = (
+	const [dropdownText, setDropdownText] = useState(visibilityFiltersText[visibilityFilter]);
+
+	const handleMenuClick = useCallback((e) => {
+		message.info(`已显示-${visibilityFiltersText[e.key]}`);
+		dispatch({type: SET_VISIBILITY_FILTER, filter: visibilityFilters[e.key]});
+		setDropdownText(visibilityFiltersText[e.key])
+	}, []);
+
+	const dropdownMenus = (
+			<Menu onClick={handleMenuClick}>
+				<Menu.Item key={visibilityFilters.SHOW_ALL}>
+					<Icon type="user"/>
+					{`${visibilityFiltersText.SHOW_ALL}(${paperData.length})`}
+				</Menu.Item>
+				<Menu.Item key={visibilityFilters.SHOW_WRONG}>
+					<Icon type="user"/>
+					{`${visibilityFiltersText.SHOW_WRONG}(${paperData.filter(q => q.isRight === isRightType.WRONG).length})`}
+				</Menu.Item>
+				<Menu.Item key={visibilityFilters.SHOW_UN_DO}>
+					<Icon type="user"/>
+					{`${visibilityFiltersText.SHOW_UN_DO}(${paperData.filter(q => q.isRight === isRightType.INIT).length})`}
+				</Menu.Item>
+			</Menu>
+	);
+	const operations = (
 			<div>
-				<Radio.Group defaultValue={visibilityFilter} onChange={radioGroupOnChange}>
-					<Radio.Button value={visibilityFilters.SHOW_ALL}>{`全部(${paperData.length})`}</Radio.Button>
-					<Radio.Button
-							value={visibilityFilters.SHOW_WRONG}>{`错题(${paperData.filter(q => q.isRight === isRightType.WRONG).length})`}</Radio.Button>
-					<Radio.Button
-							value={visibilityFilters.SHOW_UN_DO}>{`未做(${paperData.filter(q => q.isRight === isRightType.INIT).length})`}</Radio.Button>
-				</Radio.Group>
+				<Switch checkedChildren={<Icon type="check"/>}
+								unCheckedChildren={<Icon type="close"/>}
+								defaultChecked={showAnswer}
+								onChange={switchOnChange}/>
+				<Dropdown overlay={dropdownMenus}>
+					<Button>
+						{dropdownText} <Icon type="down"/>
+					</Button>
+				</Dropdown>
 			</div>
 	);
 	const onTabClick = tabIndex => {
@@ -47,15 +70,6 @@ function Exam() {
 	};
 	return (
 			<React.Fragment>
-				<PageHeader
-						onBack={() => window.history.back()}
-						title="试题"
-						subTitle={`${library[examId].title}`}
-						extra={
-							<Switch checkedChildren={<Icon type="check" />} unCheckedChildren={<Icon type="close" />} defaultChecked={showAnswer} onChange={switchOnChange}/>
-						}
-				>
-				</PageHeader>
 				<Tabs defaultActiveKey={defaultQueryIndex.toString()}
 							tabBarExtraContent={operations}
 							tabPosition="top"

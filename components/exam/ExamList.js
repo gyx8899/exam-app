@@ -54,14 +54,17 @@ const ExamList = () => {
 				setExamIndex(index);
 				setUrl(`${examLibraryUrl}${id}.json`);
 
-				setTimeout(() => {
-					resolve();
-				}, 1000);
+				let resolveInterval = setInterval(() => {
+					if (!dataState.isLoading) {
+						clearInterval(resolveInterval);
+						resolve();
+					}
+				}, 100);
 			} else {
 				resolve();
 			}
 		});
-	}, [examLists, library, setExamIndex, setUrl]);
+	}, [examLists, library, setExamIndex, setUrl, dataState]);
 
 	return (
 			<Spin spinning={dataState.isLoading}>

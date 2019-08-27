@@ -25,6 +25,12 @@ const Layout = ({title, children}) => (
 					min-height: 100vh; 
 					overflow:auto;
 				}
+				.ant-list-bordered {
+					border: none;
+				}
+				.ant-switch {
+					margin: 0 15px;
+				}
 			`}</style>
 			<Header title={title} />
 			<main>

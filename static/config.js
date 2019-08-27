@@ -1,16 +1,16 @@
 export const Menus = [
 	{
-		title: 'Home',
+		title: '首页',
 		iconType: 'home',
 		pathName: '/'
 	},
 	{
-		title: 'Exam',
+		title: '试题',
 		iconType: 'ordered-list',
 		pathName: '/exam'
 	},
 	{
-		title: 'Others',
+		title: '其他',
 		iconType: 'ordered-list',
 		pathName: '/exam',
 		subMenus: [
@@ -29,7 +29,7 @@ export const Menus = [
 		]
 	},
 	{
-		title: 'About',
+		title: '关于',
 		iconType: 'info-circle',
 		pathName: '/about'
 	},

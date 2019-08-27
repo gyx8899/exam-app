@@ -11,20 +11,24 @@ export const getMenuByPathName = (pathName) => {
 			menu.index = i;
 			menu.detail = menuItem;
 			break;
-		} else if (menuItem.pathName.indexOf(pathName) === 0 && menuItem.subMenus && menuItem.subMenus.length) {
-			for (let j = 0, lj = menuItem.subMenus.length; j < lj; j++) {
-				let subMenu = menuItem.subMenus[j];
-				if (pathName === subMenu.pathName) {
-					console.log(i, j, subMenu);
-					menu.index = i;
-					menu.subIndex = j;
-					menu.detail = menuItem;
-					menu.subDetail = subMenu;
+		} else if (pathName.indexOf(menuItem.pathName) === 0) {
+			if (menuItem.subMenus && menuItem.subMenus.length) {
+				for (let j = 0, lj = menuItem.subMenus.length; j < lj; j++) {
+					let subMenu = menuItem.subMenus[j];
+					if (pathName === subMenu.pathName) {
+						menu.index = i;
+						menu.subIndex = j;
+						menu.detail = menuItem;
+						menu.subDetail = subMenu;
+						break;
+					}
+				}
+				if (!!menu.subIndex) {
 					break;
 				}
-			}
-			if(!!menu.subIndex) {
-				break;
+			} else {
+				menu.index = i;
+				menu.detail = menuItem;
 			}
 		}
 	}

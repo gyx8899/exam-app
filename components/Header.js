@@ -4,6 +4,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {Menus} from "../static/config";
 import {getMenuByPathName} from "./api/config";
+import {useSelector} from "react-redux";
 
 const {SubMenu} = Menu;
 
@@ -19,14 +20,29 @@ const MenuLink = (props = {path: '/', name: 'Home'}) => {
 
 const Header = () => {
 	const [visible, setVisible] = useState(false);
+	const library = useSelector(state => state.exam.library);
+
 	const showDrawer = () => setVisible(true);
 	const hideDrawer = () => setVisible(false);
-	const {pathname} = useRouter();
+
+	const {pathname, query} = useRouter();
 	const selectedMenu = getMenuByPathName(pathname);
+	const title = selectedMenu.subDetail ? selectedMenu.subDetail.title : selectedMenu.detail.title;
+
+	const customProps = {};
+	if (pathname.split('/').length > 2) {
+		customProps.onBack = () => window.history.back();
+		if (pathname.indexOf('/exam/') === 0) {
+			customProps.subTitle = library[query.examId].title;
+		}
+	}
+
 	return (
 			<header>
-				<PageHeader title={selectedMenu.subDetail ? selectedMenu.subDetail.title : selectedMenu.detail.title}
-										extra={<Button icon="menu-fold" onClick={showDrawer}/>}/>
+				<PageHeader title={title}
+										extra={<Button icon="menu-fold" onClick={showDrawer}/>}
+										{...customProps}
+				/>
 				<Drawer
 						title={<Avatar src="/static/icons/favicon-32x32.png" />}
 						placement="left"
