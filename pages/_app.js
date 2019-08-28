@@ -10,7 +10,7 @@ import {RouterTitle} from "../constants/ConstTypes";
 import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";
 import PageLoading from "../components/PageLoading";
-import {ConfigProvider, BackTop} from "antd";
+import {ConfigProvider} from "antd";
 
 class NextApp extends App {
 
@@ -62,7 +62,6 @@ class NextApp extends App {
 								<PersistGate persistor={persistor} loading={<PageLoading/>}>
 									<Layout title={RouterTitle[router.pathname]}>
 										<Component {...pageProps} router={router}/>
-										<BackTop/>
 									</Layout>
 								</PersistGate>
 							</Provider>
