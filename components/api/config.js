@@ -34,3 +34,5 @@ export const getMenuByPathName = (pathName) => {
 	}
 	return {...menu};
 };
+
+export const GAId = 'G-H29X5PLPDJ';
