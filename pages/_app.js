@@ -54,7 +54,11 @@ class NextApp extends App {
 						<meta name="msapplication-TileColor" content="#1890FF"/>
 						<meta name="msapplication-TileImage" content="/static/icons/ms-icon-144x144.png"/>
 						<meta name="msapplication-config" content="/static/browserconfig.xml"/>
-						<meta name="theme-color" content="#1890FF"/>
+						{/*{<!-- Status Bar Style -->}*/}
+						{/*{<!-- Safari: black, black-translucent -->}*/}
+						<meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+						{/*{<!-- Chrome, Firefox OS and Opera -->}*/}
+						<meta name="theme-color" content="#1890FF" />
 					</Head>
 					<Container>
 						<ConfigProvider>
