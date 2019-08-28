@@ -17,5 +17,8 @@ Once initialized, you can deploy the Next.js example with just a single command:
 ```shell
 $ now
 ```
+
+### Features
 - Share
-- On/Off line
+- On/Offline - done
+- 
