@@ -7,7 +7,7 @@ import {getFilterData} from "../api/exam";
 function Paper({paperIndex, examId}) {
 	const library = useSelector(state => state.exam.library);
 	const config = useSelector(state => state.exam.config);
-	const [paper, setPaper] = useState(library[examId].papers[paperIndex]);
+	const [paper] = useState(library[examId].papers[paperIndex]);
 	if (!paper) {
 		return <Empty />;
 	}
@@ -20,6 +20,7 @@ function Paper({paperIndex, examId}) {
 				position: 'bottom',
 				showQuickJumper: true,
 				pageSize,
+				onChange: () => window.scrollTo({top: 0, behavior: "smooth" }),
 			}}
 			dataSource={getFilterData(config.visibilityFilter, paper.data)}
 			renderItem={(item, index) => (
