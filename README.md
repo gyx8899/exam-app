@@ -19,6 +19,7 @@ $ now
 ```
 
 ### Features
-- Share
-- On/Offline - done
-- 
+- [ ] Share
+- [x] On/Offline Tip
+- [x] Google Analytics
+- [x] Exercise Data persist
