@@ -19,4 +19,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # IDEA
-/.idea
+.idea/
+middlewares/server/
+yarn.lock
