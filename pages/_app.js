@@ -56,9 +56,9 @@ class NextApp extends App {
 						<meta name="msapplication-config" content="/static/browserconfig.xml"/>
 						{/*{<!-- Status Bar Style -->}*/}
 						{/*{<!-- Safari: black, black-translucent -->}*/}
-						<meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+						<meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
 						{/*{<!-- Chrome, Firefox OS and Opera -->}*/}
-						<meta name="theme-color" content="#1890FF" />
+						<meta name="theme-color" content="#1890FF"/>
 					</Head>
 					<Container>
 						<ConfigProvider>
