@@ -26,14 +26,12 @@ const ExamList = () => {
 					_expendedKeys.push(`0-${i}`);
 				}
 			} else if (_config.list && _config.list.length) {
-				let hasChildExpended = false;
+				_expendedKeys.push(`0-${i}`);
 				for (let j = 0, lj = _config.list.length; j < lj; j++) {
 					let __config = _config.list[j];
 					if (__config.convertJSON) {
 						let _libraryItem = library[__config.id];
 						if (_libraryItem && _libraryItem.papers && _libraryItem.papers.length) {
-							!hasChildExpended && _expendedKeys.push(`0-${i}`);
-							hasChildExpended = true;
 							_expendedKeys.push(`0-${i}-${j}`);
 						}
 					}
