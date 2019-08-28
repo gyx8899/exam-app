@@ -59,6 +59,14 @@ class NextApp extends App {
 						<meta name="apple-mobile-web-app-status-bar-style" content="yes" />
 						{/*{<!-- Chrome, Firefox OS and Opera -->}*/}
 						<meta name="theme-color" content="#1890FF" />
+						{/*{<!-- Global site tag (gtag.js) - Google Analytics -->}*/}
+						<script async src="https://www.googletagmanager.com/gtag/js?id=G-H29X5PLPDJ"></script>
+						<script>
+							window.dataLayer = window.dataLayer || [];
+							function gtag(){dataLayer.push(arguments)}
+							gtag('js', new Date());
+							gtag('config', 'G-H29X5PLPDJ');
+						</script>
 					</Head>
 					<Container>
 						<ConfigProvider>
