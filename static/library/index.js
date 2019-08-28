@@ -46,6 +46,8 @@ _examConfig = _examConfig.map((exam, index) => ({
 	index
 }));
 
+export const libraryJSONPath = '/static/library/json/';
+
 export const examConfig = _examConfig;
 
 export const getConfigById = function _getConfigById(configs, id) {
@@ -61,7 +63,6 @@ export const getConfigById = function _getConfigById(configs, id) {
 				break;
 			}
 		}
-		console.log(id, configs[i]);
 	}
 	return config;
 };

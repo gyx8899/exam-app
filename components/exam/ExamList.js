@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
-import {examConfig as examListConfig, getConfigById} from '../../static/library/index';
+import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../static/library/index';
 import UseDataApi from '../api/UseDataApi';
 import {ADD_EXAM} from '../../redux/constants/exam';
 
@@ -12,10 +12,37 @@ const ExamList = () => {
 	const library = useSelector(state => state.exam.library);
 	const dispatch = useDispatch();
 
-	const examLibraryUrl = `/static/library/json/`;
 	const [examLists] = useState(examListConfig);
 	const [examId, setExamId] = useState(0);
 	const [dataState, setUrl] = UseDataApi(``);
+
+	const getExpandedKeys = useCallback(() => {
+		let _expendedKeys = [];
+		for (let i = 0, li = examLists.length; i < li; i++) {
+			let _config = examLists[i];
+			if (_config.convertJSON) {
+				let _libraryItem = library[_config.id];
+				if (_libraryItem && _libraryItem.papers && _libraryItem.papers.length) {
+					_expendedKeys.push(`0-${i}`);
+				}
+			} else if (_config.list && _config.list.length) {
+				let hasChildExpended = false;
+				for (let j = 0, lj = _config.list.length; j < lj; j++) {
+					let __config = _config.list[j];
+					if (__config.convertJSON) {
+						let _libraryItem = library[__config.id];
+						if (_libraryItem && _libraryItem.papers && _libraryItem.papers.length) {
+							!hasChildExpended && _expendedKeys.push(`0-${i}`);
+							hasChildExpended = true;
+							_expendedKeys.push(`0-${i}-${j}`);
+						}
+					}
+				}
+			}
+		}
+		return _expendedKeys;
+	}, [library, examLists]);
+	const [expandedKeys] = useState(getExpandedKeys());
 
 	useEffect(() => {
 		const {isLoading, data, error} = dataState;
@@ -60,7 +87,7 @@ const ExamList = () => {
 			let config = getConfigById(examListConfig, id);
 			if (config && config.convertJSON && library[id] === undefined) {
 				setExamId(id);
-				setUrl(`${examLibraryUrl}${id}.json`);
+				setUrl(`${libraryJSONPath}${id}.json`);
 
 				let resolveInterval = setInterval(() => {
 					if (!dataState.isLoading) {
@@ -76,15 +103,15 @@ const ExamList = () => {
 
 	return (
 			<Spin spinning={dataState.isLoading}>
-				<Tree defaultExpandedKeys={['0-0']} loadData={onLoadExamData} onSelect={onSelect}>
+				<Tree defaultExpandedKeys={expandedKeys} loadData={onLoadExamData} onSelect={onSelect}>
 					{examLists.map((itemConfig, i) => (
-							<TreeNode title={itemConfig.title} key={i} id={itemConfig.id}>
+							<TreeNode title={itemConfig.title} key={`0-${i}`} id={itemConfig.id}>
 								{library[itemConfig.id] && library[itemConfig.id].papers.map((paper, j) =>
 										<TreeNode title={paper.name} key={`${itemConfig.id}.${j}`} isLeaf/>)
 								}
 								{
 									itemConfig.list && itemConfig.list.length && itemConfig.list.map((listItem, j) => (
-											<TreeNode title={listItem.title} key={`${i}-${j}`} id={listItem.id}>
+											<TreeNode title={listItem.title} key={`0-${i}-${j}`} id={listItem.id}>
 												{library[listItem.id] && library[listItem.id].papers.map((paper, k) =>
 														<TreeNode title={paper.name} key={`${listItem.id}.${k}`} isLeaf/>)
 												}
