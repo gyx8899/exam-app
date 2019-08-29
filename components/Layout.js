@@ -6,7 +6,7 @@ import Header from './Header';
 import Footer from './Footer';
 import {BackTop, message} from "antd";
 import useOffline from "./api/UseOffline";
-import {GAId} from "./api/config";
+import {GA_TRACKING_ID} from "./api/config";
 
 const Layout = ({title, children}) => {
 	// Offline status
@@ -20,7 +20,7 @@ const Layout = ({title, children}) => {
 
 	// React GA page track
 	useEffect(() => {
-		initialize(GAId);
+		initialize(GA_TRACKING_ID);
 		pageview(window.location.pathname + window.location.search);
 
 		const handleRouteChange = url => pageview(url);
