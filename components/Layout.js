@@ -4,6 +4,9 @@ import Header from './Header';
 import Footer from './Footer';
 import {BackTop, message} from "antd";
 import useOffline from "./api/UseOffline";
+import {initialize, pageview} from "react-ga";
+import {GA_TRACKING_ID} from "./api/config";
+import Router from "next/router";
 
 const Layout = ({title, children}) => {
 	// Offline status
@@ -14,6 +17,19 @@ const Layout = ({title, children}) => {
 	useEffect(() => {
 		isReOnline && message.success('网络已重新连接');
 	}, [isReOnline]);
+
+	// Google Analytics - page track
+	const trackPage = page => pageview(page);
+	useEffect(() => {
+		initialize(GA_TRACKING_ID);
+		trackPage(window.location.pathname + window.location.search);
+
+		Router.events.on('routeChangeComplete', trackPage);
+
+		return () => {
+			Router.events.off('routeChangeComplete', trackPage);
+		}
+	}, []);
 
 	return (
 			<Fragment>
