@@ -1,5 +1,5 @@
 import React, {Fragment, useState, useEffect, useReducer} from 'react';
-import axios from 'axios';
+import fetch from 'isomorphic-unfetch';
 
 const ACTIONS = {
 	FETCH_INIT: 'FETCH_INIT',
@@ -59,8 +59,9 @@ const useDataApi = (initialUrl, initialData) => {
 				if (!url) {
 					!didCancel && dispatch({type: FETCH_CANCELED});
 				} else {
-					const result = await axios(url);
-					!didCancel && dispatch({type: FETCH_SUCCESS, payload: result.data});
+					const result = await fetch(url);
+					const data = await result.json();
+					!didCancel && dispatch({type: FETCH_SUCCESS, payload: data});
 				}
 			} catch (error) {
 				!didCancel && dispatch({type: FETCH_FAILURE, error});
