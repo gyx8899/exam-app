@@ -11,6 +11,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";
 import PageLoading from "../components/PageLoading";
 import {ConfigProvider} from "antd";
+import {withTracker} from '../components/api/WithTracker';
 
 class NextApp extends App {
 
@@ -77,5 +78,5 @@ class NextApp extends App {
 }
 
 // export default withRedux(createStore)(withReduxSaga({ async: true })(NextApp));
-export default withRedux(createStore)(NextApp);
+export default withTracker(withRedux(createStore)(NextApp));
 // export default NextApp;

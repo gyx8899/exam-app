@@ -1,12 +1,9 @@
 import React, {Fragment, useEffect} from 'react';
-import {initialize, pageview} from 'react-ga';
-import Router from 'next/router';
 import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 import {BackTop, message} from "antd";
 import useOffline from "./api/UseOffline";
-import {GA_TRACKING_ID} from "./api/config";
 
 const Layout = ({title, children}) => {
 	// Offline status
@@ -17,22 +14,6 @@ const Layout = ({title, children}) => {
 	useEffect(() => {
 		isReOnline && message.success('网络已重新连接');
 	}, [isReOnline]);
-
-	// React GA page track
-	useEffect(() => {
-		initialize(GA_TRACKING_ID);
-		pageview(window.location.pathname + window.location.search);
-
-		const handleRouteChange = url => pageview(url);
-
-		Router.events.on('routeChangeComplete', handleRouteChange);
-		Router.events.on('hashChangeComplete', handleRouteChange);
-
-		return () => {
-			Router.events.off('routeChangeComplete', handleRouteChange);
-			Router.events.off('hashChangeComplete', handleRouteChange);
-		}
-	}, []);
 
 	return (
 			<Fragment>
