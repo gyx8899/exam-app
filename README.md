@@ -19,7 +19,9 @@ $ now
 ```
 
 ### Features
-- [ ] Share
+- [ ] PWA
 - [x] On/Offline Tip
 - [x] Google Analytics
 - [x] Exercise Data persist
+- [ ] Share
+- [x] NextJS server render
