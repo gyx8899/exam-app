@@ -46,11 +46,11 @@ const ExamList = () => {
 			let resolveInterval = setInterval(() => {
 				if (!dataState.isLoading) {
 					clearInterval(resolveInterval);
-					Router.push({pathname: `/exam/${id}`});
+					Router.push({pathname: `/exam`, query: {id}});
 				}
 			}, 100);
 		} else {
-			Router.push({pathname: `/exam/${id}`});
+			Router.push({pathname: `/exam`, query: {id}});
 		}
 	}, [examLists]);
 

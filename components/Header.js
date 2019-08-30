@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, PageHeader, Drawer, Avatar} from "antd";
-import {useRouter} from "next/router";
+import Router, {useRouter} from "next/router";
 import {getMenuByPathName} from "./api/util";
 import {useSelector} from "react-redux";
 import SideMenu from './SideMenu';
@@ -18,11 +18,9 @@ const Header = () => {
 	const title = selectedMenu.subDetail ? selectedMenu.subDetail.title : selectedMenu.detail.title;
 
 	const customProps = {};
-	if (pathname.split('/').length > 2) {
-		customProps.onBack = () => window.history.back();
-		if (pathname.indexOf('/exam/') === 0) {
-			customProps.subTitle = library[query.examId] && library[query.examId].title;
-		}
+	if (pathname.indexOf('/exam') === 0 && query.id) {
+		customProps.onBack = () => Router.back();
+		customProps.subTitle = library[query.examId] && library[query.examId].title;
 	}
 
 	return (

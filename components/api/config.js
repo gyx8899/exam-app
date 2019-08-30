@@ -41,3 +41,5 @@ export const Menus = [
 		pathName: '/about'
 	},
 ];
+
+export const PaperPageSize = 10;

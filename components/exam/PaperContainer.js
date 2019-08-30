@@ -1,52 +1,29 @@
-import React, {useState, useCallback, useEffect} from 'react';
-import {useRouter} from 'next/router';
+import React, {useState, useCallback} from 'react';
+import Router, {useRouter} from 'next/router';
 import {useDispatch, useSelector} from "react-redux";
-import {Tabs, Switch, Empty, Icon, Menu, Dropdown, Button, message, Spin} from "antd";
-import Paper from '../../components/exam/Paper';
+import {Tabs, Switch, Icon, Menu, Dropdown, Button, message} from "antd";
+import Paper from './Paper';
 import {
 	TOGGLE_ANSWER,
 	SET_VISIBILITY_FILTER,
 	visibilityFilters,
-	visibilityFiltersText,
-	ADD_EXAM
+	visibilityFiltersText
 } from "../../redux/constants/exam";
 import {isRightType} from "../../constants/ConstTypes";
-import UseDataApi from "../../components/api/UseDataApi";
-import {examConfig as examListConfig, getConfigById, libraryJSONPath} from "../../static/library";
 
 const {TabPane} = Tabs;
 
-function Exam() {
+function PaperContainer() {
 	const router = useRouter();
 	const library = useSelector(state => state.exam.library);
 	const showAnswer = useSelector(state => state.exam.config.showAnswer);
 	const visibilityFilter = useSelector(state => state.exam.config.visibilityFilter);
 	const dispatch = useDispatch();
 
-	const [dataState, setUrl] = UseDataApi(``);
-	useEffect(() => {
-		const {isLoading, data, error} = dataState;
-		if (!isLoading && data) {
-			let config = getConfigById(examListConfig, examId);
-			if (config && config.convertJSON) {
-				let papers = config.convertJSON(data);
-				let newExam = {
-					...config,
-					papers
-				};
-				dispatch({type: ADD_EXAM, newExam: newExam})
-			} else {
-				message.error(`${examId} is not found!`);
-			}
-		} else if (error) {
-			message.error(`${error.message}`);
-		}
-	}, [dataState]);
-
-	const examId = router.query.examId;
+	const examId = router.query.id;
 	const papers = library[examId] && library[examId].papers;
 	if (library[examId] === undefined || papers === undefined) {
-		setUrl(`${libraryJSONPath}${id}.json`);
+		Router.back();
 	}
 
 	const switchOnChange = useCallback(() => {
@@ -59,7 +36,7 @@ function Exam() {
 	const handleMenuClick = useCallback((e) => {
 		message.info(`已显示-${visibilityFiltersText[e.key]}`);
 		dispatch({type: SET_VISIBILITY_FILTER, filter: visibilityFilters[e.key]});
-		setDropdownText(visibilityFiltersText[e.key])
+		setDropdownText(visibilityFiltersText[e.key]);
 	}, []);
 
 	const dropdownMenus = (
@@ -95,7 +72,7 @@ function Exam() {
 		setPaperData(papers[tabIndex].data);
 	};
 	return (
-			<Spin spinning={dataState.isLoading}>
+			<React.Fragment>
 				<Tabs defaultActiveKey="0"
 							tabBarExtraContent={operations}
 							tabPosition="top"
@@ -108,8 +85,8 @@ function Exam() {
 						))
 					}
 				</Tabs>
-			</Spin>
+			</React.Fragment>
 	);
 }
 
-export default Exam
+export default PaperContainer

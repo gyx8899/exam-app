@@ -3,6 +3,7 @@ import {List, Empty} from 'antd';
 import {useSelector} from "react-redux";
 import Question from './Question';
 import {getFilterData} from "../api/exam";
+import {PaperPageSize} from '../api/config';
 
 function Paper({paperIndex, examId}) {
 	const library = useSelector(state => state.exam.library);
@@ -11,7 +12,6 @@ function Paper({paperIndex, examId}) {
 	if (!paper) {
 		return <Empty />;
 	}
-	const pageSize = 10;
 	return (
 	<List
 			bordered
@@ -19,7 +19,7 @@ function Paper({paperIndex, examId}) {
 			pagination={{
 				position: 'bottom',
 				showQuickJumper: true,
-				pageSize,
+				pageSize: PaperPageSize,
 				onChange: () => window.scrollTo({top: 0, behavior: "smooth" }),
 			}}
 			dataSource={getFilterData(config.visibilityFilter, paper.data)}
