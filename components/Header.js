@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, PageHeader, Drawer, Avatar} from "antd";
 import {useRouter} from "next/router";
-import {getMenuByPathName} from "./api/config";
+import {getMenuByPathName} from "./api/util";
 import {useSelector} from "react-redux";
 import SideMenu from './SideMenu';
 import {Title} from "./api/config";
