@@ -5,7 +5,7 @@ import Footer from './Footer';
 import {BackTop, message} from "antd";
 import useOffline from "./api/UseOffline";
 import {initialize, pageview} from "react-ga";
-import {GA_TRACKING_ID} from "./api/config";
+import {GA_TRACKING_ID, Title} from "./api/config";
 import Router from "next/router";
 
 const Layout = ({title, children}) => {
@@ -34,7 +34,7 @@ const Layout = ({title, children}) => {
 	return (
 			<Fragment>
 				<Head>
-					{title && <title>{title}</title>}
+					{title && <title>{`${title} - ${Title}`}</title>}
 				</Head>
 				<style jsx global>{`
 					* {
