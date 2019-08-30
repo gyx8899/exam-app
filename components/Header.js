@@ -21,7 +21,7 @@ const Header = () => {
 	if (pathname.split('/').length > 2) {
 		customProps.onBack = () => window.history.back();
 		if (pathname.indexOf('/exam/') === 0) {
-			customProps.subTitle = library[query.examId].title;
+			customProps.subTitle = library[query.examId] && library[query.examId].title;
 		}
 	}
 

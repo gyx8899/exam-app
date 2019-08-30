@@ -1,10 +1,18 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {useDispatch, useSelector} from "react-redux";
-import {Tabs, Switch, Empty, Icon, Menu, Dropdown, Button, message} from "antd";
+import {Tabs, Switch, Empty, Icon, Menu, Dropdown, Button, message, Spin} from "antd";
 import Paper from '../../components/exam/Paper';
-import {TOGGLE_ANSWER, SET_VISIBILITY_FILTER, visibilityFilters, visibilityFiltersText} from "../../redux/constants/exam";
+import {
+	TOGGLE_ANSWER,
+	SET_VISIBILITY_FILTER,
+	visibilityFilters,
+	visibilityFiltersText,
+	ADD_EXAM
+} from "../../redux/constants/exam";
 import {isRightType} from "../../constants/ConstTypes";
+import UseDataApi from "../../components/api/UseDataApi";
+import {examConfig as examListConfig, getConfigById, libraryJSONPath} from "../../static/library";
 
 const {TabPane} = Tabs;
 
@@ -15,19 +23,37 @@ function Exam() {
 	const visibilityFilter = useSelector(state => state.exam.config.visibilityFilter);
 	const dispatch = useDispatch();
 
+	const [dataState, setUrl] = UseDataApi(``);
+	useEffect(() => {
+		const {isLoading, data, error} = dataState;
+		if (!isLoading && data) {
+			let config = getConfigById(examListConfig, examId);
+			if (config && config.convertJSON) {
+				let papers = config.convertJSON(data);
+				let newExam = {
+					...config,
+					papers
+				};
+				dispatch({type: ADD_EXAM, newExam: newExam})
+			} else {
+				message.error(`${examId} is not found!`);
+			}
+		} else if (error) {
+			message.error(`${error.message}`);
+		}
+	}, [dataState]);
+
 	const examId = router.query.examId;
-	const papers = library[examId].papers;
-	const queryIndex = router.query.index * 1;
-	if (library[examId] === undefined || papers === undefined || papers.length <= queryIndex) {
-		return <Empty/>
+	const papers = library[examId] && library[examId].papers;
+	if (library[examId] === undefined || papers === undefined) {
+		setUrl(`${libraryJSONPath}${id}.json`);
 	}
 
 	const switchOnChange = useCallback(() => {
 		dispatch({type: TOGGLE_ANSWER});
 	}, []);
 
-	const defaultQueryIndex = (queryIndex >= 0 && queryIndex < library[examId].papers.length) ? queryIndex : 0;
-	const [paperData, setPaperData] = useState(papers[queryIndex].data);
+	const [paperData, setPaperData] = useState(papers[0].data);
 	const [dropdownText, setDropdownText] = useState(visibilityFiltersText[visibilityFilter]);
 
 	const handleMenuClick = useCallback((e) => {
@@ -69,8 +95,8 @@ function Exam() {
 		setPaperData(papers[tabIndex].data);
 	};
 	return (
-			<React.Fragment>
-				<Tabs defaultActiveKey={defaultQueryIndex.toString()}
+			<Spin spinning={dataState.isLoading}>
+				<Tabs defaultActiveKey="0"
 							tabBarExtraContent={operations}
 							tabPosition="top"
 							onTabClick={onTabClick}>
@@ -82,7 +108,7 @@ function Exam() {
 						))
 					}
 				</Tabs>
-			</React.Fragment>
+			</Spin>
 	);
 }
 
