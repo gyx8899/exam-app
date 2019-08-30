@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import {getMenuByPathName} from "./api/config";
 import {useSelector} from "react-redux";
 import SideMenu from './SideMenu';
+import {Title} from "./api/config";
 
 const Header = () => {
 	const [visible, setVisible] = useState(false);
@@ -31,7 +32,10 @@ const Header = () => {
 										{...customProps}
 				/>
 				<Drawer
-						title={<Avatar shape="square" src="/static/icons/favicon-32x32.png" />}
+						title={(
+								<><Avatar shape="square" src="/static/icons/favicon-96x96.png" />
+								<a style={{verticalAlign: 'middle',marginLeft: '10px'}}>{Title}</a></>
+						)}
 						placement="left"
 						closable={false}
 						onClose={hideDrawer}

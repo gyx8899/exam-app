@@ -11,6 +11,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";
 import PageLoading from "../components/PageLoading";
 import {ConfigProvider} from "antd";
+import {Title, MetaDescription, MetaKeyWord, MetaAuthor} from "../components/api/config";
 
 class NextApp extends App {
 
@@ -30,12 +31,12 @@ class NextApp extends App {
 		return (
 				<Fragment>
 					<Head>
-						<title>Exam application</title>
+						<title>{Title}</title>
 						<meta name='viewport' content='width=device-width, initial-scale=1'/>
 						<meta charSet='utf-8'/>
-						<meta name="description" content=""/>
-						<meta name="keywords" content="Exam app"/>
-						<meta name="author" content="Steper Kuo"/>
+						<meta name="description" content={MetaDescription}/>
+						<meta name="keywords" content={MetaKeyWord}/>
+						<meta name="author" content={MetaAuthor}/>
 						<link rel='shortcut icon' href='/static/icons/favicon.ico' type='image/ico'/>
 						<link rel="apple-touch-icon" sizes="57x57" href="/static/icons/apple-icon-57x57.png"/>
 						<link rel="apple-touch-icon" sizes="60x60" href="/static/icons/apple-icon-60x60.png"/>
