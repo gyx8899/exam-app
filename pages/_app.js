@@ -49,6 +49,7 @@ class NextApp extends App {
 						<meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
 						{/*{<!-- Chrome, Firefox OS and Opera -->}*/}
 						<meta name="theme-color" content="#1890FF"/>
+						<script async src="https://www.googletagmanager.com/gtag/js?id=G-H29X5PLPDJ"></script>
 					</Head>
 					<ConfigProvider>
 						<Provider store={store}>

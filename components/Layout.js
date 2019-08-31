@@ -21,6 +21,13 @@ const Layout = ({title, children}) => {
 	// Google Analytics - page track
 	const trackPage = page => pageview(page);
 	useEffect(() => {
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-H29X5PLPDJ');
+
 		initialize(GA_TRACKING_ID);
 		trackPage(window.location.pathname + window.location.search);
 
