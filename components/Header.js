@@ -20,7 +20,7 @@ const Header = () => {
 	const customProps = {};
 	if (pathname.indexOf('/exam') === 0 && query.id) {
 		customProps.onBack = () => Router.back();
-		customProps.subTitle = library[query.examId] && library[query.examId].title;
+		customProps.subTitle = library[query.id] && library[query.id].title;
 	}
 
 	return (
