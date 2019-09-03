@@ -44,4 +44,5 @@ export const Menus = [
 	},
 ];
 
+// Custom page config
 export const PaperPageSize = 10;

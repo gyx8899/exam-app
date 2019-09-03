@@ -1,0 +1,3 @@
+export const SET_SUBTITLE = 'SET_SUBTITLE';
+export const SHOW_BACK_BUTTON = 'SHOW_BACK_BUTTON';
+export const RESET_HEADER = 'RESET_HEADER';

@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import Router, {useRouter} from 'next/router';
 import {useDispatch, useSelector} from "react-redux";
 import {Tabs, Switch, Icon, Menu, Dropdown, Button, message} from "antd";
@@ -10,6 +10,7 @@ import {
 	visibilityFiltersText
 } from "../../redux/constants/exam";
 import {isRightType} from "../../constants/ConstTypes";
+import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../redux/constants/header";
 
 const {TabPane} = Tabs;
 
@@ -71,6 +72,16 @@ function PaperContainer() {
 	const onTabClick = tabIndex => {
 		setPaperData(papers[tabIndex].data);
 	};
+
+	// Update page header
+	useEffect(() => {
+			dispatch({type: SET_SUBTITLE, subTitle: library[examId].title});
+			dispatch({type: SHOW_BACK_BUTTON, showBackButton: true});
+			return () => {
+				dispatch({type: RESET_HEADER});
+			};
+		}, []);
+
 	return (
 			<React.Fragment>
 				<Tabs defaultActiveKey="0"

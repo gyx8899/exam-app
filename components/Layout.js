@@ -5,7 +5,7 @@ import Footer from './Footer';
 import {BackTop, message} from "antd";
 import useOffline from "./api/UseOffline";
 import {initialize, pageview} from "react-ga";
-import {GA_TRACKING_ID, Title} from "./api/config";
+import {GA_TRACKING_ID, Title, bgColor} from "./api/config";
 import Router from "next/router";
 
 const Layout = ({title, children}) => {
@@ -65,6 +65,11 @@ const Layout = ({title, children}) => {
 					}
 					.ant-switch {
 						margin: 0 15px;
+					}
+					.ant-page-header-heading-title,
+					.ant-page-header-heading-sub-title,
+					.ant-page-header-back-button{
+						color: ${bgColor};
 					}
 				`}</style>
 				<Header title={title} />

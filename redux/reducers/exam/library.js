@@ -8,7 +8,6 @@ const initialState = {
 const library = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_EXAM:
-			console.log(action.newExam);
 			return {
 				...state,
 				[action.newExam.id]: action.newExam

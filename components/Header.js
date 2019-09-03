@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, PageHeader, Drawer, Avatar} from "antd";
 import Router, {useRouter} from "next/router";
 import {getMenuByPathName} from "./api/util";
@@ -8,25 +8,34 @@ import {Title, themeColor, bgColor} from "./api/config";
 
 const Header = () => {
 	const [visible, setVisible] = useState(false);
-	const library = useSelector(state => state.exam.library);
+	const [customProps, setCustomProps] = useState({});
+	const showBackButton = useSelector(state => state.header.showBackButton);
+	const subTitle = useSelector(state => state.header.subTitle);
 
 	const showDrawer = () => setVisible(true);
 	const hideDrawer = () => setVisible(false);
 
-	const {pathname, query} = useRouter();
+	const {pathname} = useRouter();
 	const selectedMenu = getMenuByPathName(pathname);
 	const title = selectedMenu.subDetail ? selectedMenu.subDetail.title : selectedMenu.detail.title;
 
-	const customProps = {};
-	if (pathname.indexOf('/exam') === 0 && query.id) {
-		customProps.onBack = () => Router.back();
-		customProps.subTitle = library[query.id] && library[query.id].title;
-	}
+	// Update header's subtitle and back button state;
+	useEffect(() => {
+		let _customProps = {};
+		if (showBackButton) {
+			_customProps.onBack = () => Router.back();
+		}
+		if (subTitle) {
+			_customProps.subTitle = subTitle;
+		}
+		setCustomProps(_customProps);
+	}, [showBackButton, subTitle]);
 
 	return (
 			<header>
-				<PageHeader title={<Button icon="menu" size="large" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}>{title}</Button>}
-										style={{backgroundColor: themeColor}}
+				<PageHeader title={title}
+										style={{backgroundColor: themeColor, color: bgColor}}
+										extra={<Button icon="menu" size="large" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}/>}
 										{...customProps}
 				/>
 				<Drawer
