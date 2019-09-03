@@ -31,8 +31,14 @@ const Header = () => {
 				/>
 				<Drawer
 						title={(
-								<><Avatar shape="square" src="/static/icons/favicon-96x96.png" />
-								<a style={{verticalAlign: 'middle',marginLeft: '10px'}}>{Title}</a></>
+								<a style={{verticalAlign: 'middle',marginLeft: '10px'}}
+									 onClick={() => {
+										hideDrawer();
+										Router.push({pathname: '/'});
+									}}>
+									<Avatar shape="square" src="/static/icons/favicon-96x96.png" />
+									<span style={{verticalAlign: 'middle'}}>{Title}</span>
+								</a>
 						)}
 						placement="left"
 						closable={false}

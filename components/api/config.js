@@ -1,5 +1,5 @@
 export const Title = '考试 A+';
-export const MetaDescription = 'A+ app is one useful exercise exam questions app';
+export const MetaDescription = 'Exam A+ app is one useful exercise exam questions app';
 export const MetaKeyWord = 'Exam, Exercise, Excel, App';
 export const MetaAuthor = 'Steper Kuo';
 

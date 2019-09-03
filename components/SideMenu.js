@@ -1,19 +1,9 @@
 import {Menus, Title, MetaDescription} from "../components/api/config";
 import {Empty, Icon, Menu, Button} from "antd";
 import React from "react";
-import Link from "next/link";
+import Router from "next/router";
 
 const {SubMenu} = Menu;
-
-const MenuLink = (props = {path: '/', name: 'Home'}) => {
-	return (
-			<Link href={props.path} as={props.as}>
-				<span>
-					<a>{props.name}</a>
-				</span>
-			</Link>
-	);
-};
 
 const SideMenu = ({onClick, selectedMenu}) => {
 
@@ -25,10 +15,17 @@ const SideMenu = ({onClick, selectedMenu}) => {
 		});
 	};
 
+	const handleMenuClickEvent = (data) => {
+		onClick();
+		Router.push({
+			pathname: data.item.props.pathname
+		})
+	};
+
 	return (
 			<>
 				<Menu
-						onClick={onClick}
+						onClick={handleMenuClickEvent}
 						defaultSelectedKeys={[selectedMenu.index.toString()]}
 						defaultOpenKeys={[selectedMenu.subIndex && selectedMenu.subIndex.toString()]}
 						mode="inline"
@@ -38,24 +35,25 @@ const SideMenu = ({onClick, selectedMenu}) => {
 								!!menu.subMenus ? (
 										<SubMenu
 												key={indexM}
+												pathname={menu.pathName}
 												title={(
 														<span>
 															<Icon type={menu.iconType}/>
-															<MenuLink path={menu.pathName} name={menu.title}/>
+															<span>{menu.title}</span>
 														</span>
 												)}
 										>{
 											(menu.subMenus.length) ? menu.subMenus.map((subMenu, indexSm) => (
-													<Menu.Item key={indexSm}>
-														<MenuLink path={subMenu.pathName} name={subMenu.title}/>
+													<Menu.Item key={indexSm} pathname={subMenu.pathName}>
+														{subMenu.title}
 													</Menu.Item>
 											)) : <Empty/>
 										}
 										</SubMenu>
 								) : (
-										<Menu.Item key={indexM}>
+										<Menu.Item key={indexM} pathname={menu.pathName}>
 											<Icon type={menu.iconType}/>
-											<MenuLink path={menu.pathName} name={menu.title}/>
+											<span>{menu.title}</span>
 										</Menu.Item>
 								)
 						))
