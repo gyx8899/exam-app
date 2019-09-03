@@ -4,7 +4,7 @@ import Router, {useRouter} from "next/router";
 import {getMenuByPathName} from "./api/util";
 import {useSelector} from "react-redux";
 import SideMenu from './SideMenu';
-import {Title} from "./api/config";
+import {Title, themeColor, bgColor} from "./api/config";
 
 const Header = () => {
 	const [visible, setVisible] = useState(false);
@@ -25,8 +25,8 @@ const Header = () => {
 
 	return (
 			<header>
-				<PageHeader title={title}
-										extra={<Button icon="menu" size="small" type="link" onClick={showDrawer}/>}
+				<PageHeader title={<Button icon="menu" size="large" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}>{title}</Button>}
+										style={{backgroundColor: themeColor}}
 										{...customProps}
 				/>
 				<Drawer
