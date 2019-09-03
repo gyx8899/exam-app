@@ -35,7 +35,7 @@ const Header = () => {
 			<header>
 				<PageHeader title={title}
 										style={{backgroundColor: themeColor, color: bgColor}}
-										extra={<Button icon="menu" size="large" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}/>}
+										extra={<Button icon="menu" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}/>}
 										{...customProps}
 				/>
 				<Drawer
