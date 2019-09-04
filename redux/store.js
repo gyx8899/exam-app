@@ -2,7 +2,6 @@ import {createStore, applyMiddleware} from "redux";
 import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers/index';
 import rootSaga from './sagas/index';
-import userMiddleware from '../middlewares/client/user';
 import {persistReducer} from "redux-persist";
 import localForage from 'localforage';
 
@@ -14,8 +13,6 @@ const persistedReducer = persistReducer({
 }, rootReducer);
 
 const bindMiddleware = (middleware) => {
-	// add route middleware
-	middleware.push(userMiddleware);
 	if (process.env.NODE_ENV !== 'production') {
 		const {composeWithDevTools} = require('redux-devtools-extension');
 		// development use logger

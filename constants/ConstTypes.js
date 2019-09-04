@@ -1,15 +1,8 @@
 
-export const RoleType = {
-	'1': 'Manager',
-	'10': 'User'
-};
-
 export const RouterTitle = {
 	'/': 'Home',
 	'/about': 'About',
-	'/exam': 'Exam',
-	'/user/userList': 'UserList',
-	'/user/userDetail': 'UserDetail'
+	'/exam': 'Exam'
 };
 
 export const OptionsType = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];

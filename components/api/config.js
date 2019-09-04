@@ -24,10 +24,6 @@ export const Menus = [
 		pathName: '/exam',
 		subMenus: [
 			{
-				title: 'Error',
-				pathName: '/error',
-			},
-			{
 				title: 'Home',
 				pathName: '/',
 			},
