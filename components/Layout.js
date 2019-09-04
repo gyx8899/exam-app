@@ -71,6 +71,9 @@ const Layout = ({title, children}) => {
 					.ant-page-header-back-button{
 						color: ${bgColor};
 					}
+					.ant-radio-wrapper {
+						white-space: normal;
+					}
 				`}</style>
 				<Header title={title} />
 				<main>
