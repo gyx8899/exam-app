@@ -76,7 +76,15 @@ export function convertJSON(json) {
 					_answer: item[dataIndex._answer].split('').map(value => value.charCodeAt() - 65),
 					answer: [],
 					isRight: isRightType.INIT,
-					options: dataIndex.options.map((optionIndex, index) => `${OptionsType[index]}. ${item[optionIndex]}`)
+					options: dataIndex.options.map((optionIndex, index) => {
+						let _option = item[optionIndex],
+								option = `${OptionsType[index]}. ${item[optionIndex]}`;
+						if (typeof _option === 'number' && !isNaN(_option) && _option > 10000) {
+							let optionDate = new Date(1899, 12, _option);
+							option = optionDate.getFullYear() + '年' + (optionDate.getMonth() + 1) + '月' + optionDate.getDate() + '日'
+						}
+						return option;
+					})
 				});
 			}
 		}
