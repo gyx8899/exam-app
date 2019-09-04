@@ -1,6 +1,6 @@
-export const Title = '考试 A+';
-export const MetaDescription = 'Exam A+ app is one useful exercise exam questions app';
-export const MetaKeyWord = 'Exam, Exercise, Excel, App';
+export const Title = '考试 A+ 助手';
+export const MetaDescription = '考试 A+ 助手是一款辅助用户练习考题的应用，支持离线使用，';
+export const MetaKeyWord = '考试，练习，助手，应用，excel';
 export const MetaAuthor = 'Steper Kuo';
 
 export const GA_TRACKING_ID  = 'G-H29X5PLPDJ';
@@ -9,7 +9,7 @@ export const bgColor = '#FFFFFF';
 
 export const Menus = [
 	{
-		title: '考试 A+',
+		title: '考试 A+ 助手',
 		iconType: 'home',
 		pathName: '/'
 	},
@@ -24,11 +24,11 @@ export const Menus = [
 		pathName: '/exam',
 		subMenus: [
 			{
-				title: 'Home',
+				title: '考试 A+ 助手',
 				pathName: '/',
 			},
 			{
-				title: 'About',
+				title: '关于',
 				pathName: '/about',
 			},
 		]

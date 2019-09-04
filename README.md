@@ -1,27 +1,14 @@
-# Exam App
+# 考试 A+ 助手
 
-This directory is a brief example of a [Next.js](https://nextjs.org) app that can be deployed to ZEIT Now with zero configuration.
+一款基于 Next.js 的 考试 A+ 助手应用，通过使用 excel 文件形式的考题文件，转换成 JSON 数据，展现在考题页面，形成一个供用户练习考题的应用。
 
-## How we created this example
+[考试 A+ 助手 - https://exam-app.katekuo.now.sh/](https://exam-app.katekuo.now.sh/) 
 
-To get started with Next.js on Now, you can use [npm create](https://www.npmjs.com/package/create-next-app) to initialize the project:
-
-```shell
-$ npm create next-app my-app
-```
-
-## Deploying this Example
-
-Once initialized, you can deploy the Next.js example with just a single command:
-
-```shell
-$ now
-```
-
-### Features
+### 特点
+- [x] React(Hook) + Next.js + Redux
 - [ ] PWA
 - [x] On/Offline Tip
 - [x] Google Analytics
 - [x] Exercise Data persist
-- [ ] Share
+- [x] Share
 - [x] NextJS server render
