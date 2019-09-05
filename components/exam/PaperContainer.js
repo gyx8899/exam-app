@@ -9,7 +9,7 @@ import {
 	visibilityFilters,
 	visibilityFiltersText
 } from "../../redux/constants/exam";
-import {isRightType} from "../../constants/ConstTypes";
+import {isRightType} from "../../components/api/config";
 import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../redux/constants/header";
 
 const {TabPane} = Tabs;

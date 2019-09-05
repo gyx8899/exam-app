@@ -40,11 +40,11 @@ const Header = () => {
 				/>
 				<Drawer
 						title={(
-								<a style={{verticalAlign: 'middle',marginLeft: '10px'}}
+								<a style={{verticalAlign: 'middle', marginLeft: '10px'}}
 									 onClick={() => {
-										hideDrawer();
-										Router.push({pathname: '/'});
-									}}>
+										 hideDrawer();
+										 Router.push({pathname: '/'});
+									 }}>
 									<Avatar shape="square" src="/static/icons/favicon-96x96.png" />
 									<span style={{verticalAlign: 'middle'}}>{Title}</span>
 								</a>

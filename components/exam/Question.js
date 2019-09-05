@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector} from "react-redux";
 import Radio from './Radio';
 import CheckBox from './CheckBox';
-import {OptionsType} from '../../constants/ConstTypes';
+import {OptionsType} from '../../components/api/config';
 
 const Question = ({info, examId, paperIndex}) => {
 	const showAnswer = useSelector(state => state.exam.config.showAnswer);

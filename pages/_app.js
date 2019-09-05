@@ -6,12 +6,11 @@ import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createStore from '../redux/store';
 import Layout from '../components/Layout';
-import {RouterTitle} from "../constants/ConstTypes";
 import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";
 import PageLoading from "../components/PageLoading";
 import {ConfigProvider} from "antd";
-import {Title, MetaDescription, MetaKeyWord, MetaAuthor} from "../components/api/config";
+import {Title, MetaDescription, MetaKeyWord, MetaAuthor, PageTitle} from "../components/api/config";
 
 class NextApp extends App {
 
@@ -54,7 +53,7 @@ class NextApp extends App {
 					<ConfigProvider>
 						<Provider store={store}>
 							<PersistGate persistor={persistor} loading={<PageLoading/>}>
-								<Layout title={RouterTitle[router.pathname]}>
+								<Layout title={PageTitle[router.pathname]}>
 									<Component {...pageProps} router={router}/>
 								</Layout>
 							</PersistGate>
