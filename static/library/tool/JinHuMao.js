@@ -80,8 +80,8 @@ export function convertJSON(json) {
 						let _option = item[optionIndex],
 								option = `${OptionsType[index]}. ${item[optionIndex]}`;
 						if (typeof _option === 'number' && !isNaN(_option) && _option > 10000) {
-							let optionDate = new Date(1899, 12, _option);
-							option = optionDate.getFullYear() + '年' + (optionDate.getMonth() + 1) + '月' + optionDate.getDate() + '日'
+							let optionDate = new Date(1899, 12, _option - 1);
+							option = `${optionDate.getFullYear()}年${optionDate.getMonth() + 1}月${optionDate.getDate()}日`;
 						}
 						return option;
 					})
