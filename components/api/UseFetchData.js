@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect, useReducer} from 'react';
+import React, {useState, useEffect, useReducer} from 'react';
 import fetch from 'isomorphic-unfetch';
 
 const ACTIONS = {
@@ -8,7 +8,7 @@ const ACTIONS = {
 	FETCH_CANCELED: 'FETCH_CANCELED'
 };
 
-const dataFetchReducer = (state, action) => {
+const fetchDataReducer = (state, action) => {
 	const {FETCH_INIT, FETCH_SUCCESS, FETCH_FAILURE, FETCH_CANCELED} = ACTIONS;
 	switch (action.type) {
 		case FETCH_INIT:
@@ -40,9 +40,9 @@ const dataFetchReducer = (state, action) => {
 	}
 };
 
-const useDataApi = (initialUrl, initialData) => {
+const useFetchData = (initialUrl, initialData) => {
 	const [url, setUrl] = useState(initialUrl);
-	const [state, dispatch] = useReducer(dataFetchReducer, {
+	const [state, dispatch] = useReducer(fetchDataReducer, {
 		isLoading: false,
 		isError: false,
 		data: initialData
@@ -78,40 +78,4 @@ const useDataApi = (initialUrl, initialData) => {
 	return [state, setUrl];
 };
 
-function App() {
-	const searchUrl = `https://hn.algolia.com/api/v1/search?query=`;
-	const [query, setQuery] = useState('redux');
-	const [state, setUrl] = useDataApi(`${searchUrl}redux`,
-			{hits: []},);
-	const {isError, isLoading, data} = state;
-
-	return (
-			<Fragment>
-				<form onSubmit={(event) => {
-					setUrl(`${searchUrl}${query}`);
-					event.preventDefault();
-				}}>
-					<input type="text"
-								 value={query}
-								 onChange={event => setQuery(event.target.value)}
-					/>
-					<button type="submit">Search</button>
-				</form>
-				{isError && <div>Something went wrong...</div>}
-				{isLoading ? (
-								<div>Loading ...</div>
-						)
-						: (
-								<ul>
-									{data.hits.map(item => (
-											<li key={item.objectID}>
-												<a href={item.url}>{item.title}</a>
-											</li>
-									))}
-								</ul>
-						)}
-			</Fragment>
-	);
-}
-
-export default useDataApi;
+export default useFetchData;
