@@ -9,7 +9,7 @@ function useOffline() {
 		setReOnline(false);
 	}, [isOffline]);
 	const onOnline = useCallback(() => {
-		if (isOffline) {
+		if (!isOffline) {
 			setReOnline(true);
 		}
 		setOffline(false);
@@ -23,7 +23,7 @@ function useOffline() {
 			window.removeEventListener('online', onOnline);
 			window.removeEventListener('offline', onOffline);
 		}
-	}, [isOffline]);
+	}, []);
 
 	return [isOffline, isReOnline];
 }
