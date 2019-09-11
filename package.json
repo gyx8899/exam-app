@@ -1,17 +1,22 @@
 {
   "name": "exam-app",
   "scripts": {
+    "test": "jest",
     "dev": "next -p 3008",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@babel/core": "^7.6.0",
+    "@testing-library/react": "^9.1.4",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "antd": "^3.20.7",
+    "babel-jest": "^24.9.0",
     "babel-plugin-import": "^1.12.0",
     "isomorphic-unfetch": "^3.0.0",
+    "jest": "^24.9.0",
     "localforage": "^1.7.3",
     "next": "^9.0.2",
     "next-redux-saga": "^4.0.2",
