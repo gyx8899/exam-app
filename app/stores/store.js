@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware} from "redux";
 import createSagaMiddleware from 'redux-saga';
-import rootReducer from './reducers/index';
-import rootSaga from './sagas/index';
+import rootReducer from './reducers';
+import rootSaga from './sagas';
 import {persistReducer} from "redux-persist";
 import localForage from 'localforage';
 

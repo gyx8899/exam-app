@@ -4,7 +4,7 @@ import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
 import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../../static/library';
 import UseFetchData from '../../../app/util/UseFetchData';
-import {ADD_EXAM} from '../../../redux/constants/exam';
+import {ADD_EXAM} from '../../../site/stores/constants/exam';
 
 const {TreeNode, DirectoryTree} = Tree;
 

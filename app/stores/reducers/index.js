@@ -1,8 +1,8 @@
 import {combineReducers} from "redux";
-import exam from './exam';
+import * as Site from '../../../site/stores/reducers/index';
 import header from './header';
 
 export default combineReducers({
-	exam,
-	header
+	header,
+	...Site
 })

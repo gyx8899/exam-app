@@ -4,7 +4,7 @@ import Head from "next/head";
 import {Provider} from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
-import createStore from '../redux/store';
+import createStore from '../app/stores/store';
 import Layout from '../app/components/Layout';
 import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";

@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useDispatch} from "react-redux";
 import {Radio} from 'antd';
-import {DO_EXERCISE} from "../../../redux/constants/exam";
+import {DO_EXERCISE} from "../../../site/stores/constants/exam";
 
 export default function QRadio({question, paperIndex, examId}) {
 	const dispatch = useDispatch();

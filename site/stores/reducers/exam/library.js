@@ -1,5 +1,5 @@
 import {ADD_EXAM, DO_EXERCISE} from "../../constants/exam";
-import {isRightAnswer} from "../../../site/util/exam";
+import {isRightAnswer} from "../../../util/exam";
 
 const initialState = {
 

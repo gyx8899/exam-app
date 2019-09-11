@@ -1,5 +1,5 @@
 import {isRightType} from "../../app/config";
-import {visibilityFilters} from "../../redux/constants/exam";
+import {visibilityFilters} from "../../site/stores/constants/exam";
 
 export function isRightAnswer(answer, _answer) {
 	if (!answer || !answer.length) {
