@@ -1,4 +1,4 @@
-import {isRightType} from "../../components/api/config";
+import {isRightType} from "../../app/config";
 import {visibilityFilters} from "../../redux/constants/exam";
 
 export function isRightAnswer(answer, _answer) {

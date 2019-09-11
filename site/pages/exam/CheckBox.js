@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 import {useDispatch} from "react-redux";
 import {Checkbox, Row, Col} from 'antd';
-import {DO_EXERCISE} from "../../redux/constants/exam";
+import {DO_EXERCISE} from "../../../redux/constants/exam";
 
 function getSpanValue(count) {
 	const config = {

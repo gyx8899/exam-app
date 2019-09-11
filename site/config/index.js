@@ -4,7 +4,8 @@ export const MetaKeyWord = '考试，练习，助手，应用，excel';
 export const MetaAuthor = 'Steper Kuo';
 
 export const GA_TRACKING_ID  = 'G-H29X5PLPDJ';
-export const themeColor = '#1890FF';
+
+export const projectColor = '#1890FF';
 export const bgColor = '#FFFFFF';
 
 export const PageTitle = {

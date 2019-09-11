@@ -2,9 +2,9 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
-import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../static/library/index';
-import UseFetchData from '../api/UseFetchData';
-import {ADD_EXAM} from '../../redux/constants/exam';
+import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../../static/library';
+import UseFetchData from '../../../app/util/UseFetchData';
+import {ADD_EXAM} from '../../../redux/constants/exam';
 
 const {TreeNode, DirectoryTree} = Tree;
 

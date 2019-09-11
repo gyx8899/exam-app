@@ -8,9 +8,9 @@ import {
 	SET_VISIBILITY_FILTER,
 	visibilityFilters,
 	visibilityFiltersText
-} from "../../redux/constants/exam";
-import {isRightType} from "../../components/api/config";
-import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../redux/constants/header";
+} from "../../../redux/constants/exam";
+import {isRightType} from "../../../app/config";
+import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../../redux/constants/header";
 
 const {TabPane} = Tabs;
 

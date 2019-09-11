@@ -1,3 +1,3 @@
-import Exam from '../components/exam';
+import Exam from '../site/pages/exam';
 
 export default Exam;

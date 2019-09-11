@@ -5,12 +5,12 @@ import {Provider} from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withReduxSaga from 'next-redux-saga';
 import createStore from '../redux/store';
-import Layout from '../components/Layout';
+import Layout from '../app/components/Layout';
 import {PersistGate} from "redux-persist/integration/react";
 import {persistStore} from "redux-persist";
-import PageLoading from "../components/PageLoading";
+import PageLoading from "../app/components/PageLoading";
 import {ConfigProvider} from "antd";
-import {Title, MetaDescription, MetaKeyWord, MetaAuthor, PageTitle} from "../components/api/config";
+import {Title, MetaDescription, MetaKeyWord, MetaAuthor, PageTitle, GA_TRACKING_ID, projectColor} from "../app/config/index";
 
 class NextApp extends App {
 
@@ -40,15 +40,17 @@ class NextApp extends App {
 						<link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-icon-180x180.png"/>
 						<link rel="icon" type="image/png" sizes="96x96" href="/static/icons/favicon-96x96.png"/>
 						<link rel="manifest" href="/static/manifest.json"/>
-						<meta name="msapplication-TileColor" content="#1890FF"/>
+						<meta name="msapplication-TileColor" content={projectColor}/>
 						<meta name="msapplication-TileImage" content="/static/icons/ms-icon-144x144.png"/>
 						<meta name="msapplication-config" content="/static/browserconfig.xml"/>
 						{/*{<!-- Status Bar Style -->}*/}
 						{/*{<!-- Safari: black, black-translucent -->}*/}
 						<meta name="apple-mobile-web-app-status-bar-style" content="yes"/>
 						{/*{<!-- Chrome, Firefox OS and Opera -->}*/}
-						<meta name="theme-color" content="#1890FF"/>
-						<script async src="https://www.googletagmanager.com/gtag/js?id=G-H29X5PLPDJ"></script>
+						<meta name="theme-color" content={projectColor}/>
+						{
+							GA_TRACKING_ID && <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}></script>
+						}
 					</Head>
 					<ConfigProvider>
 						<Provider store={store}>

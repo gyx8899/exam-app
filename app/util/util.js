@@ -1,4 +1,4 @@
-import {Menus} from "./config";
+import {Menus} from "../config";
 
 export const getMenuByPathName = (pathName) => {
 	let menu = {

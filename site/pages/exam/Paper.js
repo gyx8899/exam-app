@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {List, Empty} from 'antd';
 import {useSelector} from "react-redux";
 import Question from './Question';
-import {getFilterData} from "../api/exam";
-import {PaperPageSize} from '../api/config';
+import {getFilterData} from "../../util/exam";
+import {PaperPageSize} from '../../../app/config';
 
 function Paper({paperIndex, examId}) {
 	const library = useSelector(state => state.exam.library);

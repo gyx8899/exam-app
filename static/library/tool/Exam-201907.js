@@ -1,4 +1,4 @@
-import {OptionsType, isRightType} from '../../../components/api/config';
+import {OptionsType, isRightType} from '../../../app/config/index';
 
 /**
  * From:

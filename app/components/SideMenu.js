@@ -1,4 +1,4 @@
-import {Menus, Title, MetaDescription} from "../components/api/config";
+import {Menus, Title, MetaDescription} from "../config/index";
 import {Empty, Icon, Menu, Button} from "antd";
 import React from "react";
 import Router from "next/router";

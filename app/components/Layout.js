@@ -3,9 +3,9 @@ import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 import {BackTop, message} from "antd";
-import useOffline from "./api/UseOffline";
+import useOffline from "../util/UseOffline";
 import {initialize, pageview} from "react-ga";
-import {GA_TRACKING_ID, Title, bgColor} from "./api/config";
+import {GA_TRACKING_ID, Title, bgColor} from "../config/index";
 import Router from "next/router";
 
 const Layout = ({title, children}) => {
@@ -26,7 +26,7 @@ const Layout = ({title, children}) => {
 			dataLayer.push(arguments);
 		}
 		gtag('js', new Date());
-		gtag('config', 'G-H29X5PLPDJ');
+		gtag('config', GA_TRACKING_ID);
 
 		initialize(GA_TRACKING_ID);
 		trackPage(window.location.pathname + window.location.search);

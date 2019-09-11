@@ -1,7 +1,7 @@
 import React from 'react';
 import {useRouter} from 'next/router';
-import ExamList from '../components/exam/ExamList';
-import PaperContainer from '../components/exam/PaperContainer';
+import ExamList from '../site/pages/exam/ExamList';
+import PaperContainer from '../site/pages/exam/PaperContainer';
 import {useSelector} from "react-redux";
 
 const Exam = () => {

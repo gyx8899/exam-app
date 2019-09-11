@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 import {Button, PageHeader, Drawer, Avatar} from "antd";
 import Router, {useRouter} from "next/router";
-import {getMenuByPathName} from "./api/util";
+import {getMenuByPathName} from "../util/util";
 import {useSelector} from "react-redux";
 import SideMenu from './SideMenu';
-import {Title, themeColor, bgColor} from "./api/config";
+import {Title, projectColor, bgColor} from "../config/index";
 
 const Header = () => {
 	const [visible, setVisible] = useState(false);
@@ -34,7 +34,7 @@ const Header = () => {
 	return (
 			<header>
 				<PageHeader title={title}
-										style={{backgroundColor: themeColor, color: bgColor}}
+										style={{backgroundColor: projectColor, color: bgColor}}
 										extra={<Button icon="menu" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}/>}
 										{...customProps}
 				/>
