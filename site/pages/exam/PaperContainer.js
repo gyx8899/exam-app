@@ -12,6 +12,8 @@ import {
 import {isRightType} from "../../../app/config";
 import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../../app/stores/constants/header";
 
+import './PaperContainer.less';
+
 const {TabPane} = Tabs;
 
 function PaperContainer() {

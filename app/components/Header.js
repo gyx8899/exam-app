@@ -34,7 +34,6 @@ const Header = () => {
 	return (
 			<header>
 				<PageHeader title={title}
-										style={{backgroundColor: projectColor, color: bgColor}}
 										extra={<Button icon="menu" type="link" style={{color: bgColor, padding: '0', height: 'auto'}} onClick={showDrawer}/>}
 										{...customProps}
 				/>

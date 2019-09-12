@@ -5,6 +5,8 @@ import Question from './Question';
 import {getFilterData} from "../../util/exam";
 import {PaperPageSize} from '../../../app/config';
 
+import "./Paper.less";
+
 function Paper({paperIndex, examId}) {
 	const library = useSelector(state => state.exam.library);
 	const config = useSelector(state => state.exam.config);

@@ -43,7 +43,7 @@ function configureStore(initialState = {}) {
 			store.replaceReducer(require('./reducers').default);
 		});
 	}
-	isEnvDev && console.log(`InitialState: ${JSON.stringify(store.getState(), null, 2)}`);
+	// isEnvDev && console.log(`InitialState: ${JSON.stringify(store.getState(), null, 2)}`);
 
 	return store;
 }

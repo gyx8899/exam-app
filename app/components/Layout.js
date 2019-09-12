@@ -8,6 +8,8 @@ import {initialize, pageview} from "react-ga";
 import {GA_TRACKING_ID, Title, bgColor} from "../config/index";
 import Router from "next/router";
 
+import '../styles/page.less';
+
 const Layout = ({title, children}) => {
 	// Offline status
 	const [isOffline, isReOnline] = useOffline();
@@ -43,38 +45,6 @@ const Layout = ({title, children}) => {
 				<Head>
 					{title && <title>{`${title} - ${Title}`}</title>}
 				</Head>
-				<style jsx global>{`
-					* {
-						margin: 0;
-						padding: 0;
-						box-sizing: border-box;
-					}
-					html {
-						height: 100%;
-					}
-					body {
-						font-family: Arial, sans-serif;
-						display: flex;
-						flex-direction: column;
-						flex-flow: column; 
-						min-height: 100vh; 
-						overflow:auto;
-					}
-					.ant-list-bordered {
-						border: none;
-					}
-					.ant-switch {
-						margin: 0 15px;
-					}
-					.ant-page-header-heading-title,
-					.ant-page-header-heading-sub-title,
-					.ant-page-header-back-button{
-						color: ${bgColor};
-					}
-					.ant-radio-wrapper {
-						white-space: normal;
-					}
-				`}</style>
 				<Header title={title} />
 				<main>
 					{children}

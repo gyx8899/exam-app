@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import {useDispatch} from "react-redux";
 import {Radio} from 'antd';
 import {DO_EXERCISE} from "../../../site/stores/constants/exam";
+import "./Radio.less";
 
 export default function QRadio({question, paperIndex, examId}) {
 	const dispatch = useDispatch();
