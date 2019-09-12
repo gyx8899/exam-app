@@ -2,7 +2,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
-import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../../static/library';
+import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../data';
 import UseFetchData from '../../../app/util/UseFetchData';
 import {ADD_EXAM} from '../../../site/stores/constants/exam';
 

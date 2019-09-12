@@ -1,4 +1,4 @@
-import {OptionsType, isRightType} from '../../../app/config/index';
+import {OptionsType, isRightType} from '../../../app/config';
 
 /**
  * From:

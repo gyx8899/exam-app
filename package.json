@@ -4,7 +4,8 @@
     "test": "jest",
     "dev": "next -p 3008",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "excel2json": "node ./site/node/excel2json.js"
   },
   "dependencies": {
     "@babel/core": "^7.6.0",

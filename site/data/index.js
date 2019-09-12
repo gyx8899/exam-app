@@ -46,7 +46,7 @@ _examConfig = _examConfig.map((exam, index) => ({
 	index
 }));
 
-export const libraryJSONPath = '/static/library/json/';
+export const libraryJSONPath = '/static/data/library/';
 
 export const examConfig = _examConfig;
 
