@@ -1,5 +1,6 @@
 export const ADD_EXAM = 'ADD_EXAM';
 
+export const INIT_EXERCISE = 'INIT_EXERCISE';
 export const DO_EXERCISE = 'DO_EXERCISE';
 export const TOGGLE_ANSWER = 'TOGGLE_ANSWER';
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';

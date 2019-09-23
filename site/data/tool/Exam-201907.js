@@ -1,4 +1,4 @@
-import {OptionsType, isRightType} from '../../../app/config';
+import {OptionsType} from '../../../app/config';
 
 /**
  * From:
@@ -28,7 +28,7 @@ import {OptionsType, isRightType} from '../../../app/config';
 				difficulty: null,
 				type: true, // true or false, 即单选或多选
 				title: '题目标题',
-				_answer: [1, 2, 3],
+				answer: [1, 2, 3],
 				options: ['A. xxx', 'B. xxx', 'C. xxx', 'D. xxx'],
 				answer: [],
 			}
@@ -53,9 +53,7 @@ export function convertJSON(json) {
 					difficulty: item[1],
 					type: item[2] === '多选题',
 					title: item[3],
-					_answer: (typeof item[4] === 'number') ? [item[4] - 1] : item[4].replace(/，/g, ',').split(',').map(value => value - 1),
-					answer: [],
-					isRight: isRightType.INIT,
+					answer: (typeof item[4] === 'number') ? [item[4] - 1] : item[4].replace(/，/g, ',').split(',').map(value => value - 1),
 					options: item.slice(5).map((option, index) => `${OptionsType[index]}. ${option}`)
 				});
 			}

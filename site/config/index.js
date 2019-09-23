@@ -49,8 +49,3 @@ export const Menus = [
 // Custom page config
 export const PaperPageSize = 10;
 export const OptionsType = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-export const isRightType = {
-	INIT: '0',
-	RIGHT: '1',
-	WRONG: '-1'
-};

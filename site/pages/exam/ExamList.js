@@ -4,7 +4,7 @@ import Router from 'next/router'
 import {Spin, Tree, message} from 'antd';
 import {examConfig as examListConfig, getConfigById, libraryJSONPath} from '../../data';
 import UseFetchData from '../../../app/util/UseFetchData';
-import {ADD_EXAM} from '../../../site/stores/constants/exam';
+import {ADD_EXAM, INIT_EXERCISE} from '../../../site/stores/constants/exam';
 
 const {TreeNode, DirectoryTree} = Tree;
 
@@ -26,7 +26,12 @@ const ExamList = () => {
 					...config,
 					papers
 				};
-				dispatch({type: ADD_EXAM, newExam: newExam})
+				dispatch({type: ADD_EXAM, newExam: newExam});
+				let exercise = {};
+				for (let i = 0, li = papers.length; i < li; i++) {
+					exercise[i] = {};
+				}
+				dispatch({type: INIT_EXERCISE, exercise, examId: config.id});
 			}
 			else {
 				message.error(`${examId} is not found!`);

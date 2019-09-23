@@ -9,7 +9,6 @@ import {
 	visibilityFilters,
 	visibilityFiltersText
 } from "../../../site/stores/constants/exam";
-import {isRightType} from "../../../app/config";
 import {RESET_HEADER, SET_SUBTITLE, SHOW_BACK_BUTTON} from "../../../app/stores/constants/header";
 
 import './PaperContainer.less';
@@ -19,6 +18,7 @@ const {TabPane} = Tabs;
 function PaperContainer() {
 	const router = useRouter();
 	const library = useSelector(state => state.exam.library);
+	const user = useSelector(state => state.exam.user);
 	const showAnswer = useSelector(state => state.exam.config.showAnswer);
 	const visibilityFilter = useSelector(state => state.exam.config.visibilityFilter);
 	const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function PaperContainer() {
 	}, []);
 
 	const [paperData, setPaperData] = useState(papers[0].data);
+	const [exerciseData, setExerciseData] = useState(user[examId][0]);
 	const [dropdownText, setDropdownText] = useState(visibilityFiltersText[visibilityFilter]);
 
 	const handleMenuClick = useCallback((e) => {
@@ -50,11 +51,11 @@ function PaperContainer() {
 				</Menu.Item>
 				<Menu.Item key={visibilityFilters.SHOW_WRONG}>
 					<Icon type="user"/>
-					{`${visibilityFiltersText.SHOW_WRONG}(${paperData.filter(q => q.isRight === isRightType.WRONG).length})`}
+					{`${visibilityFiltersText.SHOW_WRONG}(${Object.values(exerciseData).filter(q => q.isRight === false).length})`}
 				</Menu.Item>
 				<Menu.Item key={visibilityFilters.SHOW_UN_DO}>
 					<Icon type="user"/>
-					{`${visibilityFiltersText.SHOW_UN_DO}(${paperData.filter(q => q.isRight === isRightType.INIT).length})`}
+					{`${visibilityFiltersText.SHOW_UN_DO}(${paperData.length - Object.values(exerciseData).filter(q => q.isRight !== undefined).length})`}
 				</Menu.Item>
 			</Menu>
 	);
@@ -73,6 +74,7 @@ function PaperContainer() {
 	);
 	const onTabClick = tabIndex => {
 		setPaperData(papers[tabIndex].data);
+		setExerciseData(user[examId][tabIndex]);
 	};
 
 	// Update page header
