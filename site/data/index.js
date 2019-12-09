@@ -41,7 +41,7 @@ let _examConfig = [
 	},
 	{
 		id: 'XiaoFangTiKu',
-		title: '消防知识在线考核',
+		title: '消防测试题库',
 		convertJSON: xiaoFangTiKu
 	}
 ];
