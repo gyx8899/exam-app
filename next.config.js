@@ -23,6 +23,7 @@ const themeVariables = {
 }
 
 module.exports = withLess({
+	assetPrefix: process.env.NODE_ENV === 'production' ? '/exam-app' : '',
 	lessLoaderOptions: {
 		javascriptEnabled: true,
 		modifyVars: themeVariables, // make your antd custom effective

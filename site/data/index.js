@@ -1,5 +1,6 @@
 import {convertJSON as exam201907} from './tool/Exam-201907';
 import {convertJSON as jinHuMao} from './tool/JinHuMao';
+import {convertJSON as xiaoFangTiKu} from "./tool/XiaoFangTiKu";
 
 let _examConfig = [
 	{
@@ -37,6 +38,11 @@ let _examConfig = [
 				convertJSON: jinHuMao
 			}
 		]
+	},
+	{
+		id: 'XiaoFangTiKu',
+		title: '消防知识在线考核',
+		convertJSON: xiaoFangTiKu
 	}
 ];
 
