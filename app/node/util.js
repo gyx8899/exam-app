@@ -1,5 +1,5 @@
-//
-let fs = require('fs');
+const fs = require('fs');
+const path = require('path');
 
 //Util
 function writeDataToFile(fileDirName, data)
@@ -83,6 +83,85 @@ function getDiffFolderFileNames(sourceFolder, destFolder) {
 	return resultFileNames;
 }
 
+function getFileStats(fileDirName, callback) {
+	return fs.statSync(fileDirName);
+// stats
+// {
+//  dev : 0 ,
+//  mode : 33206 ,
+//  nlink : 1 ,
+//  uid : 0 ,
+//  gid : 0 ,
+//  rdev : 0 ,
+//  ino : 0 ,
+//  size : 378(字节) ,
+//  atime : Tue Jun 10 2014 13:57:13 GMT +0800 <中国标准时间> ,
+//  mtime : Tue Jun 13 2014 09:48:31 GMT +0800 <中国标准时间> ,
+//  ctime : Tue Jun 10 2014 13:57:13 GMT +0800 <中国标准时间>
+// }
+// 	stat.isFile()
+// 	stat.isDirectory()
+}
+
+function getParam(array, param) {
+	let paramValue = '';
+	for (let i = 0, l = array.length; i < l; i++) {
+		let paramArray = array[i].split('=');
+		if (paramArray.length === 2 && paramArray[0] === param) {
+			paramValue = paramArray[1];
+		}
+	}
+	return paramValue;
+}
+
+function getFileFromDirectory(filePath, fileCallback, folderCallback) {
+	// 根据文件路径读取文件，返回文件列表
+	fs.readdir(filePath, function (err, files) {
+		if (err) {
+			console.warn(err);
+		} else {
+			// 遍历读取到的文件列表
+			files.forEach(function (filename) {
+				// 获取当前文件的绝对路径
+				let fileDir = path.join(filePath, filename);
+				// 根据文件路径获取文件信息，返回一个fs.Stats对象
+				readDirectory(fileDir, fileCallback, folderCallback);
+			});
+		}
+	});
+}
+
+function readDirectory(fileDir, fileCallback, folderCallback) {
+	fs.stat(fileDir, function (error, stats) {
+		if (error) {
+			console.warn('获取文件stats失败');
+		} else {
+			if (stats.isFile()) {
+				fileCallback && fileCallback(fileDir, stats);
+			} else if (stats.isDirectory()) {
+				folderCallback && folderCallback(fileDir);
+				getFileFromDirectory(fileDir, fileCallback, folderCallback); //递归，如果是文件夹，就继续遍历该文件夹下面的文件
+			}
+		}
+	})
+}
+
+function iterateObject(obj, level, callbackNonLeaf, callbackLeaf) {
+	for (let key in obj) {
+		if (obj.hasOwnProperty(key)) {
+			if (typeof obj[key] === 'object'
+					&& obj[key] !== null
+					&& !Array.isArray(obj[key])
+					&& !(obj[key] instanceof Date)
+					&& !(obj[key] === 'function')) {
+				callbackNonLeaf(key, level);
+				iterateObject(obj[key], level + 1, callbackNonLeaf, callbackLeaf);
+			} else
+				callbackLeaf(key, obj[key]);
+		}
+	}
+}
+
 module.exports = {
 	writeDataToFile,
 	readDataFromFile,
@@ -90,5 +169,10 @@ module.exports = {
 	getDirectoryFileNames,
 	getDirectoryFolderNames,
 	getNodeArgs,
-	getDiffFolderFileNames
+	getDiffFolderFileNames,
+	getFileStats,
+	getParam,
+	getFileFromDirectory,
+	readDirectory,
+	iterateObject
 };
