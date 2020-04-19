@@ -1,13 +1,13 @@
 // required
-let util = require('../../app/node/util.js');
+let {getNodeArgs, getDiffFolderFileNames, writeDataToFile} = require('@daybyday/yx-node');
 let path = require("path");
 let xlsx2json = require("node-xlsx");// npm install --save-dev node-xlsx
 
-const args = util.getNodeArgs();
+const args = getNodeArgs();
 
 let excelPath = path.join(__dirname, "../data/excel/"),
 		jsonPath = path.join(__dirname, "../../static/data/library/"),
-		fileNames = args.name ? [args.name] : util.getDiffFolderFileNames(excelPath, jsonPath);
+		fileNames = args.name ? [args.name] : getDiffFolderFileNames(excelPath, jsonPath);
 
 for (let fileName of fileNames)
 {
@@ -16,7 +16,7 @@ for (let fileName of fileNames)
 			jsonFileDirName = path.join(jsonPath, jsonFileName),
 			excelFileDirName = path.join(excelPath, fileName),
 			jsonData = JSON.stringify(xlsx2json.parse(excelFileDirName));
-	util.writeDataToFile(jsonFileDirName, jsonData);
+	writeDataToFile(jsonFileDirName, jsonData);
 }
 
 

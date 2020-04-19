@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@daybyday/yx-node": "^0.1.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "terser-webpack-plugin": "^1.4.1",
