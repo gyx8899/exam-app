@@ -1,6 +1,7 @@
 import {convertJSON as exam201907} from './tool/Exam-201907';
 import {convertJSON as jinHuMao} from './tool/JinHuMao';
 import {convertJSON as xiaoFangTiKu} from "./tool/XiaoFangTiKu";
+import {convertJSON as exam20200819} from "./tool/Exam-20200819";
 
 let _examConfig = [
 	{
@@ -43,7 +44,17 @@ let _examConfig = [
 		id: 'XiaoFangTiKu',
 		title: '消防测试题库',
 		convertJSON: xiaoFangTiKu
-	}
+	},
+	// {
+	// 	id: 'Exam-20200819-1',
+	// 	title: '月考-20200819-1',
+	// 	convertJSON: exam20200819
+	// },
+	// {
+	// 	id: 'Exam-20200819-2',
+	// 	title: '月考-20200819-2',
+	// 	convertJSON: exam20200819
+	// }
 ];
 
 // Add index
