@@ -6,7 +6,7 @@ Tags:  Exam, App
 
 [考试 A+ 助手 - https://exam-app.katekuo.now.sh/](https://exam-app.katekuo.now.sh/) 
 
-[TOC]
+[![Kate Kuo's github stats](https://github-readme-stats.vercel.app/api?username=gyx8899&show_icons=true&theme=radical)](https://github.com/anuraghazra/github-readme-stats)
 
 ### 特点
 - [x] React(Hook) + Next.js + Redux
