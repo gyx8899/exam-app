@@ -2,8 +2,14 @@ import { convertJSON as exam201907 } from './tool/Exam-201907';
 import { convertJSON as jinHuMao } from './tool/JinHuMao';
 import { convertJSON as xiaoFangTiKu } from './tool/XiaoFangTiKu';
 import { convertJSON as exam20200819 } from './tool/Exam-20200819';
+import { convertJSON as exam2020104 } from './tool/Exam-202104';
 
 let _examConfig = [
+	{
+		id: 'Exam-202104',
+		title: '月考-202104',
+		convertJSON: exam2020104,
+	},
 	{
 		id: 'Exam-201907',
 		title: '月考-201907',
