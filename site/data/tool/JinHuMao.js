@@ -1,4 +1,4 @@
-import {OptionsType} from '../../../app/config';
+import { OptionsType } from '../../../app/config';
 
 /**
  * From:
@@ -39,12 +39,18 @@ const getDataIndex = (json, index) => {
 	}
 	const tableHeader = data[0];
 	return {
-		index: tableHeader.findIndex(item => (item === '序号' || item === null)),
+		index: tableHeader.findIndex(
+			(item) => item === '序号' || item === null
+		),
 		difficulty: null,
 		type: json[index].name === '多选',
-		title: tableHeader.findIndex(item => item === '题目'),
-		answer: tableHeader.findIndex(item => item === '答案'),
-		options: tableHeader.map((item, index) => (item && item.includes('选项')) ? index : null).filter(item => item !== null),
+		title: tableHeader.findIndex((item) => item === '题目'),
+		answer: tableHeader.findIndex((item) => item === '答案'),
+		options: tableHeader
+			.map((item, index) =>
+				item && item.includes('选项') ? index : null
+			)
+			.filter((item) => item !== null),
 	};
 };
 
@@ -63,7 +69,7 @@ export function convertJSON(json) {
 		let sourceData = json[i];
 		let targetData = {
 			name: sourceData.name,
-			data: []
+			data: [],
 		};
 		for (let j = 1, lj = sourceData.data.length; j < lj; j++) {
 			let item = sourceData.data[j];
@@ -73,16 +79,24 @@ export function convertJSON(json) {
 					difficulty: null,
 					type: dataIndex.type,
 					title: item[dataIndex.title].trim(),
-					answer: item[dataIndex.answer].split('').map(value => value.charCodeAt() - 65),
+					answer: item[dataIndex.answer]
+						.split('')
+						.map((value) => value.charCodeAt() - 65),
 					options: dataIndex.options.map((optionIndex, index) => {
 						let _option = item[optionIndex],
-								option = `${OptionsType[index]}. ${item[optionIndex]}`;
-						if (typeof _option === 'number' && !isNaN(_option) && _option > 10000) {
+							option = `${OptionsType[index]}. ${item[optionIndex]}`;
+						if (
+							typeof _option === 'number' &&
+							!isNaN(_option) &&
+							_option > 10000
+						) {
 							let optionDate = new Date(1899, 12, _option - 1);
-							option = `${optionDate.getFullYear()}年${optionDate.getMonth() + 1}月${optionDate.getDate()}日`;
+							option = `${optionDate.getFullYear()}年${
+								optionDate.getMonth() + 1
+							}月${optionDate.getDate()}日`;
 						}
 						return option;
-					})
+					}),
 				});
 			}
 		}

@@ -1,4 +1,4 @@
-import {OptionsType} from '../../../app/config';
+import { OptionsType } from '../../../app/config';
 
 /**
  * From:
@@ -39,12 +39,18 @@ const getDataIndex = (json, index) => {
 	}
 	const tableHeader = data[1];
 	return {
-		index: tableHeader.findIndex(item => (item === '序号' || item === null)),
+		index: tableHeader.findIndex(
+			(item) => item === '序号' || item === null
+		),
 		difficulty: null,
 		type: json[index].name === '多选',
-		title: tableHeader.findIndex(item => item === '题目'),
-		answer: tableHeader.findIndex(item => item === '答案'),
-		options: tableHeader.map((item, index) => (item && item.includes('题目')) ? index : null).filter(item => item !== null),
+		title: tableHeader.findIndex((item) => item === '题目'),
+		answer: tableHeader.findIndex((item) => item === '答案'),
+		options: tableHeader
+			.map((item, index) =>
+				item && item.includes('题目') ? index : null
+			)
+			.filter((item) => item !== null),
 	};
 };
 
@@ -63,7 +69,7 @@ export function convertJSON(json) {
 		let sourceData = json[i];
 		let targetData = {
 			name: sourceData.name,
-			data: []
+			data: [],
 		};
 		for (let j = 2, lj = sourceData.data.length; j < lj; j++) {
 			let item = sourceData.data[j];
@@ -74,26 +80,41 @@ export function convertJSON(json) {
 					difficulty: null,
 					type: dataIndex.type,
 					title: title,
-					answer: item[dataIndex.answer].split('').map(value => value.charCodeAt() - 65),
-					options: item[dataIndex.title].slice(item[dataIndex.title].indexOf('A.'))
-							.replace(/\n/g, ' ')
-							.replace('A.', ' ')
-							.replace('B.', ' ')
-							.replace('C.', ' ')
-							.replace('D.', ' ')
-							.split(' ')
-							.filter(_item => {
-								return !!_item
-							})
-							.map((content, index) => {
-								let _option = content.trim().replace(`${OptionsType[index]}.`, ''),
-										option = `${OptionsType[index]}. ${_option}`;
-								if (typeof _option === 'number' && !isNaN(_option) && _option > 10000) {
-									let optionDate = new Date(1899, 12, _option - 1);
-									option = `${optionDate.getFullYear()}年${optionDate.getMonth() + 1}月${optionDate.getDate()}日`;
-								}
-								return option;
-							})
+					answer: item[dataIndex.answer]
+						.split('')
+						.map((value) => value.charCodeAt() - 65),
+					options: item[dataIndex.title]
+						.slice(item[dataIndex.title].indexOf('A.'))
+						.replace(/\n/g, ' ')
+						.replace('A.', ' ')
+						.replace('B.', ' ')
+						.replace('C.', ' ')
+						.replace('D.', ' ')
+						.split(' ')
+						.filter((_item) => {
+							return !!_item;
+						})
+						.map((content, index) => {
+							let _option = content
+									.trim()
+									.replace(`${OptionsType[index]}.`, ''),
+								option = `${OptionsType[index]}. ${_option}`;
+							if (
+								typeof _option === 'number' &&
+								!isNaN(_option) &&
+								_option > 10000
+							) {
+								let optionDate = new Date(
+									1899,
+									12,
+									_option - 1
+								);
+								option = `${optionDate.getFullYear()}年${
+									optionDate.getMonth() + 1
+								}月${optionDate.getDate()}日`;
+							}
+							return option;
+						}),
 				});
 			}
 		}

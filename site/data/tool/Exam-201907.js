@@ -1,4 +1,4 @@
-import {OptionsType} from '../../../app/config';
+import { OptionsType } from '../../../app/config';
 
 /**
  * From:
@@ -43,7 +43,7 @@ export function convertJSON(json) {
 		let sourceData = json[i];
 		let targetData = {
 			name: sourceData.name,
-			data: []
+			data: [],
 		};
 		for (let j = 1, lj = sourceData.data.length; j < lj; j++) {
 			let item = sourceData.data[j];
@@ -53,8 +53,19 @@ export function convertJSON(json) {
 					difficulty: item[1],
 					type: item[2] === '多选题',
 					title: item[3],
-					answer: (typeof item[4] === 'number') ? [item[4] - 1] : item[4].replace(/，/g, ',').split(',').map(value => value - 1),
-					options: item.slice(5).map((option, index) => `${OptionsType[index]}. ${option}`)
+					answer:
+						typeof item[4] === 'number'
+							? [item[4] - 1]
+							: item[4]
+									.replace(/，/g, ',')
+									.split(',')
+									.map((value) => value - 1),
+					options: item
+						.slice(5)
+						.map(
+							(option, index) =>
+								`${OptionsType[index]}. ${option}`
+						),
 				});
 			}
 		}

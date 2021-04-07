@@ -1,4 +1,4 @@
-import {OptionsType} from '../../../app/config';
+import { OptionsType } from '../../../app/config';
 
 /**
  * From:
@@ -36,7 +36,7 @@ export function convertJSON(json) {
 		let sourceData = json[i];
 		let targetData = {
 			name: sourceData.name,
-			data: []
+			data: [],
 		};
 		for (let j = 1, lj = sourceData.data.length; j < lj; j++) {
 			let item = sourceData.data[j];

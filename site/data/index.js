@@ -1,13 +1,13 @@
-import {convertJSON as exam201907} from './tool/Exam-201907';
-import {convertJSON as jinHuMao} from './tool/JinHuMao';
-import {convertJSON as xiaoFangTiKu} from "./tool/XiaoFangTiKu";
-import {convertJSON as exam20200819} from "./tool/Exam-20200819";
+import { convertJSON as exam201907 } from './tool/Exam-201907';
+import { convertJSON as jinHuMao } from './tool/JinHuMao';
+import { convertJSON as xiaoFangTiKu } from './tool/XiaoFangTiKu';
+import { convertJSON as exam20200819 } from './tool/Exam-20200819';
 
 let _examConfig = [
 	{
 		id: 'Exam-201907',
 		title: '月考-201907',
-		convertJSON: exam201907
+		convertJSON: exam201907,
 	},
 	{
 		id: 'JinHuMao',
@@ -16,34 +16,34 @@ let _examConfig = [
 			{
 				id: 'JinHuMao-A-4850',
 				title: '金护帽 - A 类题',
-				convertJSON: jinHuMao
+				convertJSON: jinHuMao,
 			},
 			{
 				id: 'JinHuMao-B-3000',
 				title: '金护帽 - B 类题',
-				convertJSON: jinHuMao
+				convertJSON: jinHuMao,
 			},
 			{
 				id: 'JinHuMao-C-650',
 				title: '金护帽 - C 类题',
-				convertJSON: jinHuMao
+				convertJSON: jinHuMao,
 			},
 			{
 				id: 'JinHuMao-D-700',
 				title: '金护帽 - D 类题',
-				convertJSON: jinHuMao
+				convertJSON: jinHuMao,
 			},
 			{
 				id: 'JinHuMao-E-800',
 				title: '金护帽 - E 类题',
-				convertJSON: jinHuMao
-			}
-		]
+				convertJSON: jinHuMao,
+			},
+		],
 	},
 	{
 		id: 'XiaoFangTiKu',
 		title: '消防测试题库',
-		convertJSON: xiaoFangTiKu
+		convertJSON: xiaoFangTiKu,
 	},
 	// {
 	// 	id: 'Exam-20200819-1',
@@ -60,7 +60,7 @@ let _examConfig = [
 // Add index
 _examConfig = _examConfig.map((exam, index) => ({
 	...exam,
-	index
+	index,
 }));
 
 export const libraryJSONPath = '/static/data/library/';
