@@ -85,10 +85,6 @@ export function convertJSON(json) {
 						.map((value) => value.charCodeAt() - 65),
 					options: dataIndex.options
 						.map((optionIndex, index) => {
-							console.log(
-								'item[optionIndex]=',
-								item[optionIndex]
-							);
 							if (item[optionIndex] === null) {
 								return null;
 							}
