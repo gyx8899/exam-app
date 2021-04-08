@@ -1,15 +1,13 @@
-import {INIT_EXERCISE, DO_EXERCISE} from "../../constants/exam";
+import { INIT_EXERCISE, DO_EXERCISE } from '../../constants/exam';
 
-const initialState = {
-
-};
+const initialState = {};
 
 const user = (state = initialState, action) => {
 	switch (action.type) {
 		case INIT_EXERCISE:
 			return {
 				...state,
-				[action.examId]: action.exercise
+				[action.examId]: action.exercise,
 			};
 		case DO_EXERCISE:
 			return {
@@ -20,10 +18,10 @@ const user = (state = initialState, action) => {
 						...state[action.examId][action.paperIndex],
 						[action.qIndex]: {
 							answer: action.qAnswer,
-							isRight: action.isRight
-						}
-					}
-				}
+							isRight: action.isRight,
+						},
+					},
+				},
 			};
 
 		default:

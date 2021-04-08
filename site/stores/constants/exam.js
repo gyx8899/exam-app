@@ -9,11 +9,11 @@ export const visibilityFilters = {
 	SHOW_ALL: 'SHOW_ALL',
 	SHOW_WRONG: 'SHOW_WRONG',
 	SHOW_RIGHT: 'SHOW_RIGHT',
-	SHOW_UN_DO: 'SHOW_UN_DO'
+	SHOW_UN_DO: 'SHOW_UN_DO',
 };
 export const visibilityFiltersText = {
 	SHOW_ALL: '全部',
 	SHOW_WRONG: '错题',
 	SHOW_RIGHT: '正确',
-	SHOW_UN_DO: '未做'
+	SHOW_UN_DO: '未做',
 };
