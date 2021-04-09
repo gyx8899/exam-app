@@ -12,11 +12,15 @@ import { ADD_EXAM, INIT_EXERCISE } from '../../../site/stores/constants/exam';
 
 const { TreeNode, DirectoryTree } = Tree;
 
-const ExamList = () => {
+const ExamList = ({ filter }) => {
 	const library = useSelector((state) => state.exam.library);
 	const dispatch = useDispatch();
 
-	const [examLists] = useState(examListConfig);
+	const [examLists] = useState(() =>
+		filter
+			? examListConfig.filter((item) => item[filter] === true)
+			: examListConfig
+	);
 	const [examId, setExamId] = useState(0);
 	const [dataState, setUrl] = UseFetchData(``);
 

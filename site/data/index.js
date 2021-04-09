@@ -9,6 +9,17 @@ let _examConfig = [
 		id: 'Exam-202104',
 		title: '月考-202104',
 		convertJSON: exam2020104,
+		isLatest: true,
+	},
+	{
+		id: 'Exam-20200819-1',
+		title: '月考-20200819-1',
+		convertJSON: exam20200819,
+	},
+	{
+		id: 'Exam-20200819-2',
+		title: '月考-20200819-2',
+		convertJSON: exam20200819,
 	},
 	{
 		id: 'Exam-201907',
@@ -51,16 +62,6 @@ let _examConfig = [
 		title: '消防测试题库',
 		convertJSON: xiaoFangTiKu,
 	},
-	// {
-	// 	id: 'Exam-20200819-1',
-	// 	title: '月考-20200819-1',
-	// 	convertJSON: exam20200819
-	// },
-	// {
-	// 	id: 'Exam-20200819-2',
-	// 	title: '月考-20200819-2',
-	// 	convertJSON: exam20200819
-	// }
 ];
 
 // Add index

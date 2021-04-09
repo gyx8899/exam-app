@@ -1,3 +1,7 @@
-import Exam from '../site/pages/exam';
+import ExamList from '../site/pages/exam/ExamList';
 
-export default Exam;
+const Home = () => {
+	return <ExamList filter="isLatest" />;
+};
+
+export default Home;
