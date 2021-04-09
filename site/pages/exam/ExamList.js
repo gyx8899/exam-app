@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
-import { Spin, Tree, message } from 'antd';
+import { Alert, Spin, Tree, message } from 'antd';
 import {
 	examConfig as examListConfig,
 	getConfigById,
@@ -71,6 +71,12 @@ const ExamList = ({ filter }) => {
 
 	return (
 		<Spin spinning={dataState.isLoading}>
+			<Alert
+				message="默认仅展示近期试题"
+				description="微信中快速打开：点击右上角 ... ，点击浮窗"
+				type="info"
+				showIcon
+			/>
 			<DirectoryTree multiple defaultExpandAll onSelect={onSelect}>
 				{examLists.map((itemConfig) => (
 					<TreeNode
