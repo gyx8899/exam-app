@@ -12,11 +12,10 @@ body {
 	flex-direction: column;
 	flex-flow: column;
 	min-height: 100vh;
-	overflow:auto;
+	overflow: auto;
 }
 .ant-page-header-heading-sub-title,
-.ant-page-header-back-button
-{
+.ant-page-header-back-button {
 	color: #fff;
 }
 
@@ -26,6 +25,11 @@ body {
 		width: auto;
 		padding-top: 4px;
 	}
+}
+
+.ant-alert-with-description .ant-alert-message,
+.ant-alert-message {
+	color: @text-color !important;
 }
 
 @import '../../site/styles/page.less';
