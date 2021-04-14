@@ -8,7 +8,7 @@ import { convertJSON as exam202104SystemLedger } from './tool/Exam-202104';
 let _examConfig = [
 	{
 		id: 'Exam-202104-SystemLedger',
-		title: '202104-系统台账-试题',
+		title: '202104-制度台账-试题',
 		convertJSON: exam202104SystemLedger,
 		isLatest: true,
 	},
