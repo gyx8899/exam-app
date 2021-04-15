@@ -15,8 +15,44 @@ let _examConfig = [
 	{
 		id: 'Exam-202104',
 		title: '202104-月考-试题',
-		convertJSON: exam202104,
 		isLatest: true,
+		list: [
+			{
+				id: 'Exam-202104-1-500',
+				title: '试题：1-500',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-501-1000',
+				title: '试题：501-1000',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-1001-1500',
+				title: '试题：1001-1500',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-1501-2000',
+				title: '试题：1501-2000',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-2001-2500',
+				title: '试题：2001-2500',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-2501-2800',
+				title: '试题：2501-2800',
+				convertJSON: exam202104,
+			},
+			{
+				id: 'Exam-202104-Multiple',
+				title: '试题：多选',
+				convertJSON: exam202104,
+			},
+		],
 	},
 	{
 		id: 'Exam-20200819-1',
