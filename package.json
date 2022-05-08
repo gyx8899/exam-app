@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "excel2json": "node ./site/node/excel2json.js",
-    "git-push": "cd ../yx-env && git-push.sh exam-app"
+    "git-push": "cd ../yx-env && git-push.sh exam-app",
+    "git-push-mac": "cd ../yx-env && bash git-push.sh exam-app"
   },
   "dependencies": {
     "@babel/core": "^7.6.0",
